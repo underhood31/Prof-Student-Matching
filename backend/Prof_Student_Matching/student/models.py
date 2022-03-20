@@ -7,5 +7,4 @@ class student(models.Model):
     cgpa = models.FloatField(null=False)
     roll_no = models.IntegerField(null=False)
     #des for designation
-    # research_interest = ArrayField(max_length=30,dbtype="char")
 
