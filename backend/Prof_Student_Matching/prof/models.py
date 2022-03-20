@@ -15,7 +15,7 @@ class prof(models.Model):
     des = models.CharField(max_length=30)
     #des for designation
     lab_name = models.CharField(max_length=30)
-    res_interest = models.MultipleChoiceField(choice = FIELD_CHOICES)
+    # res_interest = forms.MultipleChoiceField()
 
 class project(models.Model):
     FIELD_CHOICES =(
@@ -28,4 +28,4 @@ class project(models.Model):
     descr = models.CharField(max_length=400)
     time_req = models.IntegerField() # Number of months req for project 
     tech_stack = models.CharField(max_length=100)
-    field = forms.MultipleChoiceField(choice = FIELD_CHOICES)
+    # field = forms.MultipleChoiceField(choice = FIELD_CHOICES)
