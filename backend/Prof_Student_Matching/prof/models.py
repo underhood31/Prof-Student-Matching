@@ -2,7 +2,7 @@ from django.db import models
 from django import forms
 
 # Create your models here.
-class prof(models.Model):
+class Prof(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     sec_name = models.CharField(max_length=30)
@@ -13,7 +13,7 @@ class prof(models.Model):
     stud_list = models.JSONField(null= True, help_text="This includes the list of students roll no which have worked under a particular prof")
 
 
-class project(models.Model):
+class Project(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=30)
     descr = models.CharField(max_length=400)
@@ -23,4 +23,4 @@ class project(models.Model):
     sel_stud = models.JSONField(null=True,help_text="Roll number of the students selected for this project")
     alloc_stat = models.BooleanField(default=False,help_text="This helps to determine if the project has been allocated to students")
     req_stu_no = models.IntegerField(null=False,help_text="This helps in determining the number of students required for a project")
-    advisor_id = models.JSONField(null=False,help_text="This stores the advisor id's for this project")
+    advisor_id = models.JSONField(null=True,help_text="This stores the advisor id's for this project")
