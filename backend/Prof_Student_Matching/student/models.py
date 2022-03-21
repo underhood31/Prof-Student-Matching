@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class student(models.Model):
+class Student(models.Model):
     first_name = models.CharField(max_length=30,help_text="First Name")
     sec_name = models.CharField(max_length=30,help_text="Second Name")
     cgpa = models.FloatField(null=False,help_text="Student's CGPA")
