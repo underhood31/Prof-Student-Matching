@@ -79,8 +79,10 @@ public class student_profile_fragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.layoutFragment,new Student_list_of_project())
-                .commit();
+                Student_list_of_project studentListOfProject = new Student_list_of_project();
+                fragmentTransaction.replace(R.id.layoutFragment,studentListOfProject)
+                        .addToBackStack(studentListOfProject.getClass().getName())
+                        .commit();
             }
         });
         return view;
@@ -103,6 +105,7 @@ public class student_profile_fragment extends Fragment {
                     student.setStudentName(sb.toString());
                     student.setStudentStream(jsonObject.getString("spec"));
                     student.setStudentDegree(jsonObject.getString("deg_type"));
+
                     studentName.setText(student.getStudentName());
                     studentStream.setText(student.getStudentStream());
                     studentDegree.setText(student.getStudentDegree());

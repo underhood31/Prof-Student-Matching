@@ -58,11 +58,16 @@ public class Student_list_of_project extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(projectAdapter);
         recyclerView.addItemDecoration(dividerItemDecoration);
+
+
+
         ProjectItem projectItem = new ProjectItem();
         projectItem.setProjectTitle("mc project");
         projectItem.setProjectAdvisorName("mukulika");
         projectItemArrayList.add(projectItem);
         projectAdapter.notifyDataSetChanged();
+
+
         return view;
     }
 }

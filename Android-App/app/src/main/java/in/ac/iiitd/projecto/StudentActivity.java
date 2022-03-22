@@ -19,8 +19,9 @@ public class StudentActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction  = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.layoutFragment, new ProjectView())
-                    .addToBackStack(null)
+            ProjectView projectView = new ProjectView();
+            fragmentTransaction.replace(R.id.layoutFragment, projectView)
+                    .addToBackStack(projectView.getClass().getName())
                     .commit();
         }
     };
@@ -59,7 +60,7 @@ public class StudentActivity extends AppCompatActivity {
         student_profile_fragment studentProfileFragment = new student_profile_fragment();
         studentProfileFragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.layoutFragment, studentProfileFragment)
-                .addToBackStack(null)
+                .addToBackStack(studentProfileFragment.getClass().getName())
                 .commit();
     }
 }

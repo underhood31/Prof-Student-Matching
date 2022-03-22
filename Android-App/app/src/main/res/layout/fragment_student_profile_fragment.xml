@@ -71,7 +71,7 @@
             android:layout_margin="4dp"
             android:layout_weight="0.2"
             android:background="@drawable/rounded_button"
-            android:text="Upload Resume" />
+            android:text="ADD RESUME" />
 
         <Button
             android:id="@+id/studentDownloadResumeBtn"
@@ -80,7 +80,7 @@
             android:layout_margin="4dp"
             android:layout_weight="0.2"
             android:background="@drawable/rounded_button"
-            android:text="Download Resume" />
+            android:text="VIEW RESUME" />
     </LinearLayout>
 
     <TextView
