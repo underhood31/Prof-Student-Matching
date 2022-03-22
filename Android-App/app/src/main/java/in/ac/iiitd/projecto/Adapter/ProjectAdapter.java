@@ -3,6 +3,7 @@ package in.ac.iiitd.projecto.Adapter;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -70,12 +72,10 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
         @Override
         public void onClick(View view) {
             Log.i("clicked: ", "" + projectItemArrayList.get(getAdapterPosition()));
-            Activity activity = (AppCompatActivity) view.getContext();
-            FragmentManager fragmentManager = activity.getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//            fragmentTransaction.replace(R.id.layoutFragment, new ProjectView())
-//                    .addToBackStack(null)
-//                    .commit();
+            Intent intent = new Intent ("ProjectViewFragment");
+            intent.putExtra("number", getAdapterPosition());
+            LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
+
 
 
         }

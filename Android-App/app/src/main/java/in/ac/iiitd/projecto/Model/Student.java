@@ -2,7 +2,7 @@ package in.ac.iiitd.projecto.Model;
 
 public class Student {
 
-    public String studentName, studentYear, studentStream;
+    public String studentName, studentDegree, studentStream;
     public Student(){}
 
     public String getStudentName() {
@@ -21,11 +21,11 @@ public class Student {
         this.studentStream = studentStream;
     }
 
-    public String getStudentYear() {
-        return studentYear;
+    public String getStudentDegree() {
+        return studentDegree;
     }
 
-    public void setStudentYear(String studentYear) {
-        this.studentYear = studentYear;
+    public void setStudentDegree(String studentDegree) {
+        this.studentDegree = studentDegree;
     }
 }

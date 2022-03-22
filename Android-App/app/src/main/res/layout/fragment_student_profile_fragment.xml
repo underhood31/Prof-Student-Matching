@@ -38,7 +38,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/studentStream"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Student Stream"
@@ -46,10 +46,10 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/studentDegree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Student Year"
+                android:text="Student Degree"
                 android:textColor="#000000"
                 android:textSize="18sp" />
         </LinearLayout>

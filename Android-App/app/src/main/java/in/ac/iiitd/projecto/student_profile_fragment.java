@@ -32,7 +32,7 @@ import org.json.JSONObject;
 public class student_profile_fragment extends Fragment {
 
     private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn ;
-    private TextView studentName;
+    private TextView studentName, studentStream, studentDegree;
     private RequestQueue requestQueue;
     private static final String TAG = "VolleyActivity";
 
@@ -40,15 +40,6 @@ public class student_profile_fragment extends Fragment {
         // Required empty public constructor
     }
 
-
-//    public static student_profile_fragment newInstance(String param1, String param2) {
-//        student_profile_fragment fragment = new student_profile_fragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,15 +52,27 @@ public class student_profile_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_student_profile_fragment, container, false);
+        Student student;
+        student = new Student();
 
-//        String name = savedInstanceState.getString("userEmailAddress");
+        String rollno=getArguments().getString("rollno");
+        System.out.println("The roll number is : "+ rollno);
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
+
         studentName = view.findViewById(R.id.studentName);
+        studentStream = view.findViewById(R.id.studentStream);
+        studentDegree = view.findViewById(R.id.studentDegree);
+
+
+
         requestQueue = Volley.newRequestQueue(getContext());
-        String url = "https://prof-student-matching.herokuapp.com/students/2018248/";
-        fetchData(url);
+        StringBuilder urlBuild = new StringBuilder("https://prof-student-matching.herokuapp.com/students/");
+        urlBuild.append(rollno);
+        String url = urlBuild.toString();
+        fetchData(url,student);
+
 
         studentApplyProjectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,33 +87,25 @@ public class student_profile_fragment extends Fragment {
     }
 
 
-    private void fetchData(String url){
+    private void fetchData(String url, Student student){
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+//                System.out.println("this is the response : " + response);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response);
-
-                    Student student;
-                    if (jsonObject.get("status").toString().trim().equals("success")) {
-                        JSONArray jsonArray = jsonObject.getJSONArray("data");
-
-                        for (int i = 0; i < jsonArray.length(); i++) {
-
-                            JSONObject empObj = jsonArray.getJSONObject(i);
-                            student = new Student();
-                            student.setStudentName(empObj.getString("first_name"));
-                            studentName.setText(student.getStudentName());
-//                            employee.setName(empObj.getString("employee_name"));
-//                            employee.setSalary(empObj.getInt("employee_salary"));
-//                            employee.setAge((byte) empObj.getInt("employee_age"));
-
-//                            employeeArrayList.add(employee);
-                        }
-//                        recyclerView.setAdapter(employeesAdapter);
-                    }
+                    System.out.println("hello");
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(jsonObject.getString("first_name"));
+                    sb.append(" ");
+                    sb.append(jsonObject.getString("sec_name"));
+                    student.setStudentName(sb.toString());
+                    student.setStudentStream(jsonObject.getString("spec"));
+                    student.setStudentDegree(jsonObject.getString("deg_type"));
+                    studentName.setText(student.getStudentName());
+                    studentStream.setText(student.getStudentStream());
+                    studentDegree.setText(student.getStudentDegree());
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
