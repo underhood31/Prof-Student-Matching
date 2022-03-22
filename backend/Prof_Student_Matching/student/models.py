@@ -1,4 +1,5 @@
 from django.db import models
+from prof.models import ResearchField
 
 # Create your models here.
 class Student(models.Model):
@@ -22,7 +23,9 @@ class Student(models.Model):
     cgpa = models.FloatField(null=False,help_text="Student's CGPA")
     roll_no = models.IntegerField(null=False,help_text="Student's Roll number",primary_key=True)
     #des for designation
-    res_interest = models.JSONField(null=True,help_text="This includes the field in which the student is interested")
+    res_interest1 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest1",null=True)
+    res_interest2 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest2",null=True)
+    res_interest3 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest3",null=True)
     resume_link = models.CharField(max_length=200,help_text="This includes the student's resume link",null=True)
     spec = models.CharField(
         max_length=4, 
