@@ -10,6 +10,11 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import in.ac.iiitd.projecto.Adapter.ProjectAdapter;
+import in.ac.iiitd.projecto.Model.ProjectItem;
 import in.ac.iiitd.projecto.Model.Student;
 
 import android.util.Log;
@@ -22,6 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.net.URL;
+import java.util.ArrayList;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -38,8 +45,12 @@ public class student_profile_fragment extends Fragment {
 
     private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn ;
     private TextView studentName, studentStream, studentDegree;
-    private RequestQueue requestQueue;
+    private RequestQueue requestQueue, studentRequestQueue;
     private static final String TAG = "VolleyActivity";
+    private ArrayList<ProjectItem> studentProjectArrayList;
+    private ProjectAdapter projectAdapter;
+    private RecyclerView recyclerView;
+
 
     public student_profile_fragment() {
         // Required empty public constructor
@@ -114,8 +125,19 @@ public class student_profile_fragment extends Fragment {
         studentStream = view.findViewById(R.id.studentStream);
         studentDegree = view.findViewById(R.id.studentDegree);
 
+        /*********************RecyclerView*********************************************/
+        /******************************************************************************/
+        this.recyclerView = view.findViewById(R.id.recyclerViewProject);
+        studentProjectArrayList = new ArrayList<>();
+        projectAdapter =  new ProjectAdapter(studentProjectArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(projectAdapter);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        studentRequestQueue = Volley.newRequestQueue(getContext());
 
-
+        /******************************************************************************/
         requestQueue = Volley.newRequestQueue(getContext());
         StringBuilder urlBuild = new StringBuilder("https://prof-student-matching.herokuapp.com/students/");
         urlBuild.append(rollno);
@@ -136,8 +158,60 @@ public class student_profile_fragment extends Fragment {
         });
         return view;
     }
+    public String removeExtra(String str){
+        str = str.replace("{","");
+        str = str.replace(":","");
+        str = str.replace("1","");
+        str = str.replace("}","");
+        return str;
+    }
+    public void fillData(ProjectItem projectItem, JSONObject jsonObject1) throws JSONException {
+        projectItem.setProjectTitle(jsonObject1.getString("title"));
 
+        String advisors = jsonObject1.getString("advisor_id");
+        advisors = removeExtra(advisors);
+        projectItem.setProjectAdvisorName(advisors);
 
+        String tech_stack = jsonObject1.getString("tech_stack");
+        tech_stack = removeExtra(tech_stack);
+        projectItem.setProjectTechStack(tech_stack);
+
+        projectItem.setProjectStatus(jsonObject1.getBoolean("alloc_stat"));
+        projectItem.setProjectDescription(jsonObject1.getString("descr"));
+        projectItem.setProjectTimeRequired(jsonObject1.getInt("time_req"));
+        projectItem.setProjectRequiredStudents(jsonObject1.getInt("req_stu_no"));
+        projectItem.setProjectId(jsonObject1.getInt("id"));
+
+        studentProjectArrayList.add(projectItem);
+    }
+    private void fetchData(String url){
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("The new response is : " + response);
+                JSONObject jsonObject2 = null;
+                try {
+                    jsonObject2 = new JSONObject(response);
+                    ProjectItem projectItem;
+                    projectItem = new ProjectItem();
+                    fillData(projectItem, jsonObject2);
+                    projectAdapter.notifyDataSetChanged();
+
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.i(TAG, "volley error: " + error.getMessage());
+            }
+        });
+
+        studentRequestQueue.add(request); //Execution
+    }
     private void fetchData(String url, Student student){
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -155,6 +229,26 @@ public class student_profile_fragment extends Fragment {
                     student.setStudentStream(jsonObject.getString("spec"));
                     student.setStudentDegree(jsonObject.getString("deg_type"));
                     student.setStudentResumeLink(jsonObject.getString("resume_link"));
+                    String str = jsonObject.getString("proj_applied");
+                    str = str.replace("{","");
+                    str = str.replace("0","");
+                    str = str.replace("}","");
+                    str = str.replace(":","");
+                    String[] arr = str.split(",");
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    for(int i=0;i<arr.length;i++){
+                        arrayList.add(arr[i]);
+                    }
+                    student.setArrayList(arrayList);
+//                    System.out.println("MAAHI VE : " + student.getArrayList().get(0)+" : "+student.getArrayList().get(1));
+//                    fetchData("https://prof-student-matching.herokuapp.com/project/1/");
+
+                    for(int i = 0;i<student.getArrayList().size();i++){
+                        StringBuilder projectURL = new StringBuilder("https://prof-student-matching.herokuapp.com/project/");
+                        projectURL.append(student.getArrayList().get(i));
+                        String projURL = projectURL.toString();
+                        fetchData(projURL);
+                    }
 
 
                     studentName.setText(student.getStudentName());

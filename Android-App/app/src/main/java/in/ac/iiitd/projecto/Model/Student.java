@@ -1,9 +1,20 @@
 package in.ac.iiitd.projecto.Model;
 
+import java.util.ArrayList;
+
 public class Student {
 
     public String studentName, studentDegree, studentStream, studentResumeLink;
+    public ArrayList<String> arrayList;
     public Student(){}
+
+    public void setArrayList(ArrayList<String> arrayList) {
+        this.arrayList = arrayList;
+    }
+
+    public ArrayList<String> getArrayList() {
+        return arrayList;
+    }
 
     public String getStudentResumeLink() {
         return studentResumeLink;
