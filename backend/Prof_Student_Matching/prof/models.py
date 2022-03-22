@@ -3,7 +3,8 @@ from django import forms
 
 # Create your models here.
 class ResearchField(models.Model):
-    fieldName = models.CharField(max_length=500,primary_key=True)
+    id = models.AutoField(primary_key=True,null=False)
+    fieldName = models.CharField(max_length=500,null=False)
 
 class Prof(models.Model):
     id = models.AutoField(primary_key=True)
