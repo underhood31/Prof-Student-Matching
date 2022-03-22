@@ -20,9 +20,18 @@ public class StudentActivity extends AppCompatActivity {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction  = fragmentManager.beginTransaction();
             ProjectView projectView = new ProjectView();
-            fragmentTransaction.replace(R.id.layoutFragment, projectView)
-                    .addToBackStack(projectView.getClass().getName())
+            ProjectView projectView1 = ProjectView.newInstance(intent.getStringExtra("title"),
+                    intent.getStringExtra("advisorName"),
+                    intent.getStringExtra("description"),
+                    String.valueOf(intent.getStringExtra("timeRequired")),
+                    intent.getStringExtra("techStack"),
+                    String.valueOf(intent.getStringExtra("requiredStudents")),
+                    intent.getStringExtra("allocationStatus")
+                    );
+            fragmentTransaction.replace(R.id.layoutFragment, projectView1)
+                    .addToBackStack(projectView1.getClass().getName())
                     .commit();
+
         }
     };
     @Override

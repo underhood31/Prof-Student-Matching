@@ -36,7 +36,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/projectTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name of Project"
@@ -52,7 +52,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/advisorName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name of Professor"
@@ -83,7 +83,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/projectDescriptionTextView"
         android:layout_width="match_parent"
         android:layout_height="130dp"
         android:background="@drawable/rounded_corner"

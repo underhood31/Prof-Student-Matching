@@ -78,12 +78,11 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             intent.putExtra("title",projectItemArrayList.get(getAdapterPosition()).getProjectTitle());
             intent.putExtra("advisorName",projectItemArrayList.get(getAdapterPosition()).getProjectAdvisorName());
             intent.putExtra("description",projectItemArrayList.get(getAdapterPosition()).getProjectDescription());
-            intent.putExtra("timeRequired",projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired());
+//            intent.putExtra("timeRequired",projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired());
             intent.putExtra("techStack",projectItemArrayList.get(getAdapterPosition()).getProjectTechStack());
             intent.putExtra("requiredStudents",projectItemArrayList.get(getAdapterPosition()).getProjectRequiredStudents());
-            intent.putExtra("timeRequired",projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired());
             intent.putExtra("allocationStatus",projectItemArrayList.get(getAdapterPosition()).getProjectStatus());
-
+            intent.putExtra("timeRequired",projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired());
             LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
 
         }
