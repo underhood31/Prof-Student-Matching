@@ -27,6 +27,8 @@ class Student(models.Model):
     res_interest2 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest2",null=True)
     res_interest3 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest3",null=True)
     resume_link = models.CharField(max_length=200,help_text="This includes the student's resume link",null=True)
+    proj_applied = models.JSONField(null=True,help_text="List of projects in which the student has applied")
+    proj_selected = models.JSONField(null=True,help_text="List of projects in which the student has been selected")
     spec = models.CharField(
         max_length=4, 
         choices=specialization.choices,
