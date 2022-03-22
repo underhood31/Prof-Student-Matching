@@ -2,10 +2,21 @@ package in.ac.iiitd.projecto.Model;
 
 public class ProjectItem {
 
-    private String projectTitle, projectAdvisorName;
+    private String projectTitle, projectAdvisorName, projectTechStack, projectDescription;
+    private int projectTimeRequired, projectRequiredStudents, projectId;
+    private Boolean projectStatus;
     public ProjectItem(){
 
     }
+
+    public int getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
+    }
+
     public String getProjectTitle(){
         return projectTitle;
     }
@@ -22,4 +33,44 @@ public class ProjectItem {
         this.projectAdvisorName = name;
     }
 
+    public String getProjectTechStack() {
+        return projectTechStack;
+    }
+
+    public void setProjectTechStack(String projectTechStack) {
+        this.projectTechStack = projectTechStack;
+    }
+
+
+    public Boolean getProjectStatus() {
+        return projectStatus;
+    }
+
+    public void setProjectStatus(Boolean projectStatus) {
+        this.projectStatus = projectStatus;
+    }
+
+    public int getProjectRequiredStudents() {
+        return projectRequiredStudents;
+    }
+
+    public int getProjectTimeRequired() {
+        return projectTimeRequired;
+    }
+
+    public String getProjectDescription() {
+        return projectDescription;
+    }
+
+    public void setProjectDescription(String projectDescription) {
+        this.projectDescription = projectDescription;
+    }
+
+    public void setProjectTimeRequired(int projectTimeRequired) {
+        this.projectTimeRequired = projectTimeRequired;
+    }
+
+    public void setProjectRequiredStudents(int projectRequiredStudents) {
+        this.projectRequiredStudents = projectRequiredStudents;
+    }
 }

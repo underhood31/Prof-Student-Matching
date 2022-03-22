@@ -8,10 +8,23 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import in.ac.iiitd.projecto.Adapter.ProjectAdapter;
@@ -23,20 +36,15 @@ public class Student_list_of_project extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<ProjectItem> projectItemArrayList;
     private ProjectAdapter projectAdapter;
+    private RequestQueue requestQueue;
+
+    private static final String TAG = "VolleyProjectActivity";
 
     public Student_list_of_project() {
         // Required empty public constructor
     }
 
 
-//    public static Student_list_of_project newInstance(String param1, String param2) {
-//        Student_list_of_project fragment = new Student_list_of_project();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,15 +67,72 @@ public class Student_list_of_project extends Fragment {
         recyclerView.setAdapter(projectAdapter);
         recyclerView.addItemDecoration(dividerItemDecoration);
 
-
-
-        ProjectItem projectItem = new ProjectItem();
-        projectItem.setProjectTitle("mc project");
-        projectItem.setProjectAdvisorName("mukulika");
-        projectItemArrayList.add(projectItem);
-        projectAdapter.notifyDataSetChanged();
-
+        requestQueue = Volley.newRequestQueue(getContext());
+        String url = "https://prof-student-matching.herokuapp.com/project/";
+        fetchData(url);
 
         return view;
     }
+    public String removeExtra(String str){
+        str = str.replace("{","");
+        str = str.replace(":","");
+        str = str.replace("1","");
+        str = str.replace("}","");
+        return str;
+    }
+    public void fillData(ProjectItem projectItem, JSONObject jsonObject1) throws JSONException {
+        projectItem.setProjectTitle(jsonObject1.getString("title"));
+
+        String advisors = jsonObject1.getString("advisor_id");
+        advisors = removeExtra(advisors);
+        projectItem.setProjectAdvisorName(advisors);
+
+        String tech_stack = jsonObject1.getString("tech_stack");
+        tech_stack = removeExtra(tech_stack);
+        projectItem.setProjectTechStack(tech_stack);
+
+        projectItem.setProjectStatus(jsonObject1.getBoolean("alloc_stat"));
+        projectItem.setProjectDescription(jsonObject1.getString("descr"));
+        projectItem.setProjectTimeRequired(jsonObject1.getInt("time_req"));
+        projectItem.setProjectRequiredStudents(jsonObject1.getInt("req_stu_no"));
+        projectItem.setProjectId(jsonObject1.getInt("id"));
+
+        projectItemArrayList.add(projectItem);
+    }
+
+    private void fetchData(String url){
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("The response is : " + response);
+                JSONObject jsonObject = null;
+                try {
+                    JSONArray jsonArray = new JSONArray(response);
+//                    jsonObject = new JSONObject(response);
+                    ProjectItem projectItem;
+                    for( int i = 0;i<jsonArray.length();i++){
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(i);
+                        projectItem = new ProjectItem();
+                        fillData(projectItem, jsonObject1);
+                    }
+                    projectAdapter.notifyDataSetChanged();
+
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.i(TAG, "volley error: " + error.getMessage());
+            }
+        });
+
+        requestQueue.add(request); //Execution
+    }
+
+
+
 }

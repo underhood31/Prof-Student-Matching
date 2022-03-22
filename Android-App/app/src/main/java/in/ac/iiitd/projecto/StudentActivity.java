@@ -35,12 +35,12 @@ public class StudentActivity extends AppCompatActivity {
         String rollno="";
         int index=-1;
         for (int i=0; i<email.length(); ++i) {
-            if (Character.isDigit(email.charAt(i))) {
+            if (email.charAt(i)=='@') {
                 index=i;
                 break;
             }
         }
-        rollno="20"+email.substring(index,index+5);
+        rollno=email.substring(0,index);
         return rollno;
     }
     @Override
