@@ -75,13 +75,23 @@ WSGI_APPLICATION = 'Prof_Student_Matching.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
+DATABASES={
+   'default':{
+      'ENGINE':'django.db.backends.postgresql_psycopg2',
+      'NAME':'d5q4f3eh1ehogi',
+      'USER':'qoptwxepvigyhg',
+      'PASSWORD':'060c87a24c35a2e92278f95fa5a3e0562b358ee08cb2e425a5bfaa4dad2c954f',
+      'HOST':'ec2-3-231-254-204.compute-1.amazonaws.com',
+      'PORT':'5432',
+   }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
