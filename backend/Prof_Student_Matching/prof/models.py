@@ -10,6 +10,8 @@ class Prof(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     sec_name = models.CharField(max_length=30)
+    email = models.EmailField(max_length=256)
+    contact = models.PhoneNumberField(null=True, blank=False, unique=True)
     des = models.CharField(max_length=30)
     #des for designation
     lab_name = models.CharField(max_length=30)
