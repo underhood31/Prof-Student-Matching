@@ -23,6 +23,7 @@ class Student(models.Model):
     roll_no = models.IntegerField(null=False,help_text="Student's Roll number",primary_key=True)
     #des for designation
     res_interest = models.JSONField(null=True,help_text="This includes the field in which the student is interested")
+    resume_link = models.CharField(max_length=200,help_text="This includes the student's resume link",null=True)
     spec = models.CharField(
         max_length=4, 
         choices=specialization.choices,
