@@ -1,57 +1,10 @@
 Students
 [
-   [
     {
-        "email": "navneet18348@iiitd.ac.in",
-        "first_name": "Navneet",
-        "sec_name": "Agarwal",
-        "cgpa": 9.2,
-        "roll_no": 2018348,
-        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
-        "proj_applied": "{4:1}",
-        "proj_selected": null,
-        "spec": "CSE",
-        "deg_type": "UG",
-        "res_interest1": 14,
-        "res_interest2": 3,
-        "res_interest3": 13
-    },
-    {
-        "email": "aanya18208@iiitd.ac.in",
-        "first_name": "Aanya",
-        "sec_name": "Jain",
-        "cgpa": 8.8,
-        "roll_no": 2018208,
-        "resume_link": null,
-        "proj_applied": null,
-        "proj_selected": null,
-        "spec": "CSAM",
-        "deg_type": "UG",
-        "res_interest1": 2,
-        "res_interest2": null,
-        "res_interest3": null
-    },
-    {
-        "email": "swastik18269@iiitd.ac.in",
-        "first_name": "Swastik",
-        "sec_name": "Jain",
-        "cgpa": 8.3,
-        "roll_no": 2018269,
-        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
-        "proj_applied": null,
-        "proj_selected": null,
-        "spec": "CSAM",
-        "deg_type": "UG",
-        "res_interest1": 1,
-        "res_interest2": 5,
-        "res_interest3": null
-    },
-    {
-        "email": "manavjeet18295@iiitd.ac.in",
+        "roll_no": 2018295,
         "first_name": "Manavjeet",
         "sec_name": "Singh",
         "cgpa": 9.3,
-        "roll_no": 2018295,
         "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
         "proj_applied": null,
         "proj_selected": null,
@@ -62,11 +15,38 @@ Students
         "res_interest3": null
     },
     {
-        "email": "peeyush18402@iiitd.ac.in",
+        "roll_no": 2018269,
+        "first_name": "Swastik",
+        "sec_name": "Jain",
+        "cgpa": 8.3,
+        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
+        "proj_applied": null,
+        "proj_selected": null,
+        "spec": "CSAM",
+        "deg_type": "UG",
+        "res_interest1": 1,
+        "res_interest2": 5,
+        "res_interest3": null
+    },
+    {
+        "roll_no": 2018208,
+        "first_name": "Aanya",
+        "sec_name": "Jain",
+        "cgpa": 8.8,
+        "resume_link": null,
+        "proj_applied": null,
+        "proj_selected": null,
+        "spec": "CSAM",
+        "deg_type": "UG",
+        "res_interest1": 2,
+        "res_interest2": null,
+        "res_interest3": null
+    },
+    {
+        "roll_no": 2018402,
         "first_name": "Peeyush",
         "sec_name": "Jain",
         "cgpa": 8.9,
-        "roll_no": 2018402,
         "resume_link": null,
         "proj_applied": null,
         "proj_selected": null,
@@ -75,8 +55,21 @@ Students
         "res_interest1": 7,
         "res_interest2": null,
         "res_interest3": null
+    },
+    {
+        "roll_no": 2018348,
+        "first_name": "Navneet",
+        "sec_name": "Agarwal",
+        "cgpa": 9.2,
+        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
+        "proj_applied": "{4:1}",
+        "proj_selected": null,
+        "spec": "CSE",
+        "deg_type": "UG",
+        "res_interest1": 14,
+        "res_interest2": 3,
+        "res_interest3": 13
     }
-]
 ]
 
 Project
@@ -143,141 +136,4 @@ Project
     }
 ]
 
-[
-    {
-        "id": 1,
-        "first_name": "Mukulika",
-        "sec_name": "Maity",
-        "email": "mukulika@iiitd.ac.in",
-        "contact": "011-269074471",
-        "room_no": "B-509 (R&D Block)",
-        "website": "http://faculty.iiitd.ac.in/~mukulika/",
-        "des": "Assistant Professor (CSE)",
-        "lab_name": "Network Research Lab",
-        "stud_list": "{Prince Sachdeva :1, Keshav Gambhir: 1, Chintan:1, Naval Shukla :1 }",
-        "res_interest1": 1,
-        "res_interest2": 2,
-        "res_interest3": 3
-    },
-    {
-        "id": 2,
-        "first_name": "Arani",
-        "sec_name": "Bhattacharya",
-        "email": "arani@iiitd.ac.in",
-        "contact": "011-269074434",
-        "room_no": "B-510 (R&D Block)",
-        "website": "http://faculty.iiitd.ac.in/~arani/",
-        "des": "Assistant Professor (CSE)",
-        "lab_name": "Network Research Lab",
-        "stud_list": "{Prince Sachdeva :1, Keshav Gambhir: 1, Sapna :1 , Shubham : 1}",
-        "res_interest1": 4,
-        "res_interest2": 5,
-        "res_interest3": null
-    },
-    {
-        "id": 3,
-        "first_name": "Arun",
-        "sec_name": "Balaji",
-        "email": "arunb@iiitd.ac.in",
-        "contact": "011-269074469",
-        "room_no": "B-504 (R&D Block)",
-        "website": "http://faculty.iiitd.ac.in/~arunb/",
-        "des": "Assistant Professor (CSE)",
-        "lab_name": "Security Lab",
-        "stud_list": "{Deepak Srivastav :1, Manavjeet Singh: 1, Ira Agarwal:1 }",
-        "res_interest1": 6,
-        "res_interest2": 7,
-        "res_interest3": 8
-    },
-    {
-        "id": 4,
-        "first_name": "Sambuddho",
-        "sec_name": "Chakravarty",
-        "email": "sambuddho@iiitd.ac.in",
-        "contact": "011-26907478",
-        "room_no": "B-503 (R&D Block)",
-        "website": "http://faculty.iiitd.ac.in/~arunb/",
-        "des": "Assistant Professor (CSE)",
-        "lab_name": "Security Lab",
-        "stud_list": "{Kartikay :1, Manak Bisht: 1, Nitish Gupta:1 }",
-        "res_interest1": 6,
-        "res_interest2": 7,
-        "res_interest3": 8
-    },
-    {
-        "id": 5,
-        "first_name": "Rajiv",
-        "sec_name": "Ratn Shah",
-        "email": "rajivratn@iiitd.ac.in",
-        "contact": "011-26907495",
-        "room_no": "B-409 (R&D Block)",
-        "website": "http://midas.iiitd.edu.in/",
-        "des": "Assistant Prof (CSE,HCD)",
-        "lab_name": "MIDAS Lab",
-        "stud_list": "{Navneet Agarwal :1, Dibya Gautam: 1, Sarthak Arora:1 }",
-        "res_interest1": 12,
-        "res_interest2": 13,
-        "res_interest3": null
-    }
-]
-
-
-[
-    {
-        "id": 1,
-        "fieldName": "Networked System"
-    },
-    {
-        "id": 2,
-        "fieldName": "Wireless Networks"
-    },
-    {
-        "id": 3,
-        "fieldName": "Mobile Systems"
-    },
-    {
-        "id": 4,
-        "fieldName": "video streaming and physical layer of wireless networks"
-    },
-    {
-        "id": 5,
-        "fieldName": "Low latency compute and machine learning services"
-    },
-    {
-        "id": 6,
-        "fieldName": "Cyber security"
-    },
-    {
-        "id": 7,
-        "fieldName": "Reinforcement learning"
-    },
-    {
-        "id": 8,
-        "fieldName": "Network Privacy"
-    },
-    {
-        "id": 9,
-        "fieldName": "Network Anonymity"
-    },
-    {
-        "id": 10,
-        "fieldName": "Network Censorship"
-    },
-    {
-        "id": 11,
-        "fieldName": "System Security"
-    },
-    {
-        "id": 12,
-        "fieldName": "Information Retrieval"
-    },
-    {
-        "id": 13,
-        "fieldName": "Sentiment Analysis"
-    },
-    {
-        "id": 14,
-        "fieldName": "Machine Learning"
-    }
-]
 

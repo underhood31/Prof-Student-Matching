@@ -1,3 +1,4 @@
+import email
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -25,11 +26,9 @@ class StudentViewSet(viewsets.ModelViewSet):
             if(pk == None):
                 raise Exception()
             stud_id = pk
-            stud_instance = Student.objects.get(roll_no=stud_id)
-            print("here1")
+            stud_instance = Student.objects.get(email=stud_id)
             for field in request.data:
                 if field == "proj_applied" or field=="proj_selected" or field=="email":
-                    print("here2")
                     setattr(stud_instance,field,request.data[field])
                 else:
                     pass
