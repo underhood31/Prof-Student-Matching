@@ -25,7 +25,7 @@ class Prof(models.Model):
 
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=30)
+    title = models.CharField(max_length=100)
     descr = models.CharField(max_length=400)
     time_req = models.IntegerField() # Number of months req for project 
     tech_stack = models.JSONField(null=True,help_text="This includes the tech stack requirement for project")
