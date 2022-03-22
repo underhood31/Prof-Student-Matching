@@ -1,6 +1,9 @@
 package in.ac.iiitd.projecto;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -14,7 +17,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.URL;
 import com.android.volley.Request;
@@ -60,6 +65,50 @@ public class student_profile_fragment extends Fragment {
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
+        /**********Viewing and Uploading Resume***********************************/
+        /****************************************************************************/
+        studentUploadResumeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert=new AlertDialog.Builder(getContext());
+                alert.setTitle("Upload Resume");
+                alert.setMessage("Please paste a Google drive link of your resume here");
+                final EditText input=new EditText(getContext());
+                alert.setView(input);
+                alert.setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        student.setStudentResumeLink(input.getText().toString());
+
+                        Log.i("Alert Box",student.getStudentResumeLink());
+                    }
+                });
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(getContext(),"No link added for Resume",Toast.LENGTH_SHORT).show();
+                    }
+                });
+                alert.show();
+
+            }
+        });
+        //Log.i("Alert Box",student.getStudentResumeLink());
+        studentDownloadResumeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent=new Intent(Intent.ACTION_VIEW);
+//                String link="https://drive.google.com/file/d/1VwGdr4KFGsTpeQzVCPUWlbOo5wcsRHQj/view?usp=sharing";
+//                myIntent.setData(Uri.parse(student.getStudentResumeLink()));
+                myIntent.setType("*/*");
+                myIntent.setData(Uri.parse(student.getStudentResumeLink()));
+                //myIntent.setData(Uri.parse(link));
+                //myIntent.setDataAndType(Uri.parse(link), "/");
+                Intent intent = Intent.createChooser(myIntent, "Choose an application to open with:");
+                getContext().startActivity(intent);
+            }
+        });
+        /****************************************************************************/
 
         studentName = view.findViewById(R.id.studentName);
         studentStream = view.findViewById(R.id.studentStream);
@@ -105,6 +154,8 @@ public class student_profile_fragment extends Fragment {
                     student.setStudentName(sb.toString());
                     student.setStudentStream(jsonObject.getString("spec"));
                     student.setStudentDegree(jsonObject.getString("deg_type"));
+                    student.setStudentResumeLink(jsonObject.getString("resume_link"));
+
 
                     studentName.setText(student.getStudentName());
                     studentStream.setText(student.getStudentStream());

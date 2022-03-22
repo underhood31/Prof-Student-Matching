@@ -2,8 +2,16 @@ package in.ac.iiitd.projecto.Model;
 
 public class Student {
 
-    public String studentName, studentDegree, studentStream;
+    public String studentName, studentDegree, studentStream, studentResumeLink;
     public Student(){}
+
+    public String getStudentResumeLink() {
+        return studentResumeLink;
+    }
+
+    public void setStudentResumeLink(String studentResumeLink) {
+        this.studentResumeLink = studentResumeLink;
+    }
 
     public String getStudentName() {
         return studentName;
