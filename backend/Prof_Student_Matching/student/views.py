@@ -28,10 +28,7 @@ class StudentViewSet(viewsets.ModelViewSet):
             stud_id = pk
             stud_instance = Student.objects.get(email=stud_id)
             for field in request.data:
-                if field == "proj_applied" or field=="proj_selected" or field=="email":
-                    setattr(stud_instance,field,request.data[field])
-                else:
-                    pass
+                setattr(stud_instance,field,request.data[field])
             stud_instance.save()
         except:
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)

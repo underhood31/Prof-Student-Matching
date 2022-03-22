@@ -15,10 +15,7 @@ class ProfViewSet(viewsets.ModelViewSet):
             prof_id = pk
             prof_instance = Prof.objects.get(email=prof_id)
             for field in request.data:
-                if field == "stud_list" :
-                    setattr(prof_instance,field,request.data[field])
-                else:
-                    pass
+                setattr(prof_instance,field,request.data[field])
             prof_instance.save()
         except:
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
