@@ -12,7 +12,7 @@ class Prof(models.Model):
     sec_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=256)
     contact = models.CharField(max_length=13)
-    room_no = models.CharField(max_length=10)
+    room_no = models.CharField(max_length=30)
     website = models.CharField(max_length=500)
     des = models.CharField(max_length=30)
     #des for designation
