@@ -13,9 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/rounded_edittext"
-        android:ems="10"
         android:hint="\tEmail"
-        android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textSize="20sp" />
 

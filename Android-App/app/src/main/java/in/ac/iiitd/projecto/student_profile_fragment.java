@@ -11,11 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class student_profile_fragment extends Fragment {
 
     private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn ;
-
+    private TextView studentName;
     public student_profile_fragment() {
         // Required empty public constructor
     }
@@ -41,13 +42,17 @@ public class student_profile_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_student_profile_fragment, container, false);
+
+//        String name = savedInstanceState.getString("userEmailAddress");
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
+        studentName = view.findViewById(R.id.studentName);
+
+//        studentName.setText(name);
         studentApplyProjectBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.layoutFragment,new Student_list_of_project())

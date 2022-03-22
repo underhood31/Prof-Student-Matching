@@ -3,27 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/fragment_project_view.xml" value="0.14858906525573193" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_student.xml" value="0.14130434782608695" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_login.xml" value="0.17552083333333332" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_project_view.xml" value="0.14130434782608695" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_list_of_project.xml" value="0.14130434782608695" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_profile_fragment.xml" value="0.14130434782608695" />
-        <entry key="..\:/Project/Prof-Student-Matching/Android-App/app/src/main/res/layout/project_list_item.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_button.xml" value="0.2265" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/fragment_project_view.xml" value="0.21164021164021163" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/fragment_student_profile_fragment.xml" value="0.21164021164021163" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_main.xml" value="0.21603260869565216" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_login.xml" value="0.21603260869565216" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_project_view.xml" value="0.21603260869565216" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_list_of_project.xml" value="0.21603260869565216" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_profile_fragment.xml" value="0.21603260869565216" />
-        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/project_list_item.xml" value="0.21603260869565216" />
+        <entry key="..\:/Users/swast/Desktop/IIITD 4th Year/8th Sem/MC/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_edittext.xml" value="0.1085" />
+        <entry key="..\:/Users/swast/Desktop/IIITD 4th Year/8th Sem/MC/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_login.xml" value="0.18" />
+        <entry key="..\:/Users/swast/Desktop/IIITD 4th Year/8th Sem/MC/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_profile_fragment.xml" value="0.19519927536231885" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
