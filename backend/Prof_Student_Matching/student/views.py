@@ -28,7 +28,7 @@ class StudentViewSet(viewsets.ModelViewSet):
             stud_instance = Student.objects.get(roll_no=stud_id)
             print("here1")
             for field in request.data:
-                if field == "proj_applied" or field=="proj_selected":
+                if field == "proj_applied" or field=="proj_selected" or field=="email":
                     print("here2")
                     setattr(stud_instance,field,request.data[field])
                 else:

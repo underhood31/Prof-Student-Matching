@@ -7,10 +7,9 @@ class ResearchField(models.Model):
     fieldName = models.CharField(max_length=500,null=False)
 
 class Prof(models.Model):
-    id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     sec_name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=256)
+    email = models.CharField(max_length=256,primary_key=True)
     contact = models.CharField(max_length=13)
     room_no = models.CharField(max_length=30)
     website = models.CharField(max_length=500)

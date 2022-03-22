@@ -20,8 +20,9 @@ class Student(models.Model):
 
     first_name = models.CharField(max_length=30,help_text="First Name")
     sec_name = models.CharField(max_length=30,help_text="Second Name")
+    email = models.CharField(max_length=256,primary_key=True)    
     cgpa = models.FloatField(null=False,help_text="Student's CGPA")
-    roll_no = models.IntegerField(null=False,help_text="Student's Roll number",primary_key=True)
+    roll_no = models.IntegerField(null=False,help_text="Student's Roll number")
     #des for designation
     res_interest1 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest1",null=True)
     res_interest2 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="student_res_interest2",null=True)

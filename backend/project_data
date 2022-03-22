@@ -1,38 +1,27 @@
 Students
 [
+   [
     {
-        "roll_no": 2018295,
-        "first_name": "Manavjeet",
-        "sec_name": "Singh",
-        "cgpa": 9.3,
+        "email": "navneet18348@iiitd.ac.in",
+        "first_name": "Navneet",
+        "sec_name": "Agarwal",
+        "cgpa": 9.2,
+        "roll_no": 2018348,
         "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
-        "proj_applied": null,
+        "proj_applied": "{4:1}",
         "proj_selected": null,
-        "spec": "CSD",
+        "spec": "CSE",
         "deg_type": "UG",
-        "res_interest1": 3,
-        "res_interest2": 6,
-        "res_interest3": null
+        "res_interest1": 14,
+        "res_interest2": 3,
+        "res_interest3": 13
     },
     {
-        "roll_no": 2018269,
-        "first_name": "Swastik",
-        "sec_name": "Jain",
-        "cgpa": 8.3,
-        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
-        "proj_applied": null,
-        "proj_selected": null,
-        "spec": "CSAM",
-        "deg_type": "UG",
-        "res_interest1": 1,
-        "res_interest2": 5,
-        "res_interest3": null
-    },
-    {
-        "roll_no": 2018208,
+        "email": "aanya18208@iiitd.ac.in",
         "first_name": "Aanya",
         "sec_name": "Jain",
         "cgpa": 8.8,
+        "roll_no": 2018208,
         "resume_link": null,
         "proj_applied": null,
         "proj_selected": null,
@@ -43,10 +32,41 @@ Students
         "res_interest3": null
     },
     {
-        "roll_no": 2018402,
+        "email": "swastik18269@iiitd.ac.in",
+        "first_name": "Swastik",
+        "sec_name": "Jain",
+        "cgpa": 8.3,
+        "roll_no": 2018269,
+        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
+        "proj_applied": null,
+        "proj_selected": null,
+        "spec": "CSAM",
+        "deg_type": "UG",
+        "res_interest1": 1,
+        "res_interest2": 5,
+        "res_interest3": null
+    },
+    {
+        "email": "manavjeet18295@iiitd.ac.in",
+        "first_name": "Manavjeet",
+        "sec_name": "Singh",
+        "cgpa": 9.3,
+        "roll_no": 2018295,
+        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
+        "proj_applied": null,
+        "proj_selected": null,
+        "spec": "CSD",
+        "deg_type": "UG",
+        "res_interest1": 3,
+        "res_interest2": 6,
+        "res_interest3": null
+    },
+    {
+        "email": "peeyush18402@iiitd.ac.in",
         "first_name": "Peeyush",
         "sec_name": "Jain",
         "cgpa": 8.9,
+        "roll_no": 2018402,
         "resume_link": null,
         "proj_applied": null,
         "proj_selected": null,
@@ -55,21 +75,8 @@ Students
         "res_interest1": 7,
         "res_interest2": null,
         "res_interest3": null
-    },
-    {
-        "roll_no": 2018348,
-        "first_name": "Navneet",
-        "sec_name": "Agarwal",
-        "cgpa": 9.2,
-        "resume_link": "https://drive.google.com/file/d/1Z5LbCt_VFaRa-6KgVYHhU41YdfYy98Bk/view?usp=sharing",
-        "proj_applied": "{4:1}",
-        "proj_selected": null,
-        "spec": "CSE",
-        "deg_type": "UG",
-        "res_interest1": 14,
-        "res_interest2": 3,
-        "res_interest3": 13
     }
+]
 ]
 
 Project
