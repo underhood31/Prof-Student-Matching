@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class LoginFragment extends Fragment {
@@ -26,6 +30,13 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
     @Override
@@ -46,10 +57,20 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),StudentActivity.class);
+
+                if (!isEmailValid(userEmailAddress.getText().toString())) {
+                    Toast toast = Toast.makeText(getContext(), "Invalid Email ID",Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
+                if (userPassword.getText().toString().isEmpty()) {
+                    Toast toast = Toast.makeText(getContext(), "Please enter a password",Toast.LENGTH_SHORT);
+                    toast.show();
+                    return;
+                }
                 System.out.println("Is this happening : "+userEmailAddress.getText().toString());
                 intent.putExtra("userEmailAddress", userEmailAddress.getText().toString());
                 startActivity(intent);
-
             }
         });
         return view;
