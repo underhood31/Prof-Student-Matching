@@ -12,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class student_profile_fragment extends Fragment {
 
     private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn ;
     private TextView studentName;
+    private String Rollno;
     public student_profile_fragment() {
         // Required empty public constructor
     }
@@ -37,13 +39,18 @@ public class student_profile_fragment extends Fragment {
 
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_student_profile_fragment, container, false);
 
-//        String name = savedInstanceState.getString("userEmailAddress");
+//        String email = savedInstanceState.getString("userEmailAddress");
+
+
+
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
