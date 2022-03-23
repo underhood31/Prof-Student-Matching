@@ -81,6 +81,8 @@ public class Student_list_of_project extends Fragment {
         return str;
     }
     public void fillData(ProjectItem projectItem, JSONObject jsonObject1) throws JSONException {
+        Log.i("DEBUG","Json Object");
+
         projectItem.setProjectTitle(jsonObject1.getString("title"));
 
         String advisors = jsonObject1.getString("advisor_id");
@@ -88,7 +90,7 @@ public class Student_list_of_project extends Fragment {
         projectItem.setProjectAdvisorName(advisors);
 
         String tech_stack = jsonObject1.getString("tech_stack");
-        tech_stack = removeExtra(tech_stack);
+//        tech_stack = removeExtra(tech_stack);
         projectItem.setProjectTechStack(tech_stack);
 
         projectItem.setProjectStatus(jsonObject1.getBoolean("alloc_stat"));
@@ -96,7 +98,6 @@ public class Student_list_of_project extends Fragment {
         projectItem.setProjectTimeRequired(jsonObject1.getInt("time_req"));
         projectItem.setProjectRequiredStudents(jsonObject1.getInt("req_stu_no"));
         projectItem.setProjectId(jsonObject1.getInt("id"));
-
         projectItemArrayList.add(projectItem);
     }
 
