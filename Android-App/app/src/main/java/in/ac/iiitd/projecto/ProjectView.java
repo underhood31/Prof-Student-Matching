@@ -35,7 +35,7 @@ import java.util.Map;
 public class ProjectView extends Fragment {
 
     private TextView projectTitle, advisorName, projectDescriptionTextView, timeRequiredTextView, techStackTextView, requiredStudentsTextView, allocationStatusTextView;
-    private Button projectApplyBtn;
+    private Button projectApplyBtn, projectWithdrawBtn;
     public ProjectView() {
         // Required empty public constructor
     }
@@ -78,7 +78,7 @@ public class ProjectView extends Fragment {
         requiredStudentsTextView = view.findViewById(R.id.requiredStudentsTextView);
         allocationStatusTextView = view.findViewById(R.id.allocationStatusTextView);
         projectApplyBtn = view.findViewById(R.id.projectApplyBtn);
-
+        projectWithdrawBtn = view.findViewById(R.id.projectWithdrawBtn);
 
         projectTitle.setText(getArguments().getString("title"));
         advisorName.setText(getArguments().getString("advisorName"));
@@ -99,7 +99,7 @@ public class ProjectView extends Fragment {
                     String URL = "http://prof-student-matching.herokuapp.com/students/swastik18269/update_fields/";
                     JSONObject jsonBody = new JSONObject();
                     jsonBody.put("sec_name", "Jain");
-                    jsonBody.put("proj_applied","{1:0,3:0,7:0}");
+                    jsonBody.put("proj_applied","{1:0,9:0,7:0,12:0}");
                     final String requestBody = jsonBody.toString();
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -107,6 +107,68 @@ public class ProjectView extends Fragment {
                         public void onResponse(String response) {
                             Log.i("VOLLEY", response);
                             Toast.makeText(getContext(),"You have successfully applied", Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("VOLLEY", error.toString());
+                        }
+
+                    }) {
+                        @Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=utf-8";
+                        }
+
+                        @Override
+                        public byte[] getBody() throws AuthFailureError {
+                            try {
+                                return requestBody == null ? null : requestBody.getBytes("utf-8");
+                            } catch (UnsupportedEncodingException uee) {
+                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                                return null;
+                            }
+                        }
+
+                        @Override
+                        protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                            String responseString = "";
+                            if (response != null) {
+                                responseString = String.valueOf(response.statusCode);
+                                // can get more details such as response.headers
+                            }
+                            return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+                        }
+                    };
+
+                    requestQueue.add(stringRequest);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                /****************************************************************************/
+            }
+        });
+        projectWithdrawBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                postNewComment(getContext());
+                /***************************Trying POST command******************************/
+                /****************************************************************************/
+                try {
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    String URL = "http://prof-student-matching.herokuapp.com/students/swastik18269/update_fields/";
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("sec_name", "Jain");
+                    jsonBody.put("proj_applied","{9:0,7:0,12:0}");
+                    final String requestBody = jsonBody.toString();
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.i("VOLLEY", response);
+                            Toast.makeText(getContext(),"Application Withdrawn!", Toast.LENGTH_SHORT).show();
                         }
                     }, new Response.ErrorListener() {
                         @Override
