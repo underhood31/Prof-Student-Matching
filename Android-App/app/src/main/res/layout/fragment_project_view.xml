@@ -10,63 +10,46 @@
     <!-- Include other widget or layout tags here. These are considered
             "child views" or "children" of the linear layout -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/rounded_corner"
-        android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@drawable/rounded_corner"
-            android:orientation="vertical">
-
-            <TextView
+        <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Project Title"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_marginTop="30dp"/>
 
-            <TextView
-                android:id="@+id/projectTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name of Project"
-                android:textColor="#000000"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/projectTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name of Project"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:background="@drawable/rounded_corner"
+            />
 
-            <TextView
-                android:layout_width="wrap_content"
+        <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Advisor"
                 android:textColor="#000000"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAlignment="center"/>
 
             <TextView
                 android:id="@+id/advisorName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Name of Professor"
                 android:textColor="#000000"
+                android:background="@drawable/rounded_corner"
                 android:textSize="16sp" />
-        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_weight="0"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@tools:sample/avatars" />
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textView8"
