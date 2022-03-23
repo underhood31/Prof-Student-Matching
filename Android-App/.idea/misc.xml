@@ -7,12 +7,15 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1785" />
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.1785" />
+        <entry key="app/src/main/res/layout-land/activity_student.xml" value="0.13139329805996472" />
         <entry key="app/src/main/res/layout-land/fragment_project_view.xml" value="0.13139329805996472" />
+        <entry key="app/src/main/res/layout-land/fragment_student_profile_fragment.xml" value="0.13139329805996472" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/activity_student.xml" value="0.24864130434782608" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.24864130434782608" />
         <entry key="app/src/main/res/layout/fragment_project_view.xml" value="0.24864130434782608" />
         <entry key="app/src/main/res/layout/fragment_student_list_of_project.xml" value="0.24864130434782608" />
+        <entry key="app/src/main/res/layout/fragment_student_profile_fragment.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/project_list_item.xml" value="0.24864130434782608" />
       </map>
     </option>
