@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 public class StudentActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class StudentActivity extends AppCompatActivity {
                     String.valueOf(intent.getStringExtra("requiredStudents")),
                     intent.getStringExtra("allocationStatus")
                     );
+
             fragmentTransaction.replace(R.id.layoutFragment, projectView1)
                     .addToBackStack(projectView1.getClass().getName())
                     .commit();

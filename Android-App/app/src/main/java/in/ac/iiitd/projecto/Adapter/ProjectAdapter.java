@@ -78,11 +78,14 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
             intent.putExtra("title",projectItemArrayList.get(getAdapterPosition()).getProjectTitle());
             intent.putExtra("advisorName",projectItemArrayList.get(getAdapterPosition()).getProjectAdvisorName());
             intent.putExtra("description",projectItemArrayList.get(getAdapterPosition()).getProjectDescription());
-//            intent.putExtra("timeRequired",projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired());
             intent.putExtra("techStack",projectItemArrayList.get(getAdapterPosition()).getProjectTechStack());
-            intent.putExtra("requiredStudents",projectItemArrayList.get(getAdapterPosition()).getProjectRequiredStudents());
-            intent.putExtra("allocationStatus",projectItemArrayList.get(getAdapterPosition()).getProjectStatus());
-            intent.putExtra("timeRequired",projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired());
+            intent.putExtra("requiredStudents",String.valueOf(projectItemArrayList.get(getAdapterPosition()).getProjectRequiredStudents()));
+            if(projectItemArrayList.get(getAdapterPosition()).getProjectStatus())
+                intent.putExtra("allocationStatus","Allocation done");
+            else
+                intent.putExtra("allocationStatus","Not Allocated until now");
+
+            intent.putExtra("timeRequired",String.valueOf(projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired())+" months");
             LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
 
         }

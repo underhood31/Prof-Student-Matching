@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +23,9 @@ public class ProjectView extends Fragment {
     public static ProjectView newInstance(String s1, String s2, String s3, String s4, String s5, String s6, String s7) {
         ProjectView fragment = new ProjectView();
         Bundle args = new Bundle();
+
         args.putString("title", s1);
         args.putString("advisorName", s2);
-
         args.putString("description", s3);
         args.putString("timeRequired", s4);
         args.putString("techStack", s5);
