@@ -27,7 +27,7 @@ class Project(models.Model):
     title = models.CharField(max_length=100)
     descr = models.CharField(max_length=400)
     time_req = models.IntegerField() # Number of months req for project 
-    tech_stack = models.JSONField(null=True,help_text="This includes the tech stack requirement for project")
+    tech_stack = models.CharField(max_length=400,null=True,help_text="This includes the tech stack requirement for project")
     res_interest1 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="project_res_interest1",null=True)
     res_interest2 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="project_res_interest2",null=True)
     res_interest3 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="project_res_interest3",null=True)
