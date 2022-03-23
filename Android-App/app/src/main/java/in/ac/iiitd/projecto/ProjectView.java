@@ -1,6 +1,7 @@
 package in.ac.iiitd.projecto;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,12 +10,32 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProjectView extends Fragment {
 
     private TextView projectTitle, advisorName, projectDescriptionTextView, timeRequiredTextView, techStackTextView, requiredStudentsTextView, allocationStatusTextView;
-
+    private Button projectApplyBtn;
     public ProjectView() {
         // Required empty public constructor
     }
@@ -56,6 +77,8 @@ public class ProjectView extends Fragment {
         timeRequiredTextView = view.findViewById(R.id.timeRequiredTextView);
         requiredStudentsTextView = view.findViewById(R.id.requiredStudentsTextView);
         allocationStatusTextView = view.findViewById(R.id.allocationStatusTextView);
+        projectApplyBtn = view.findViewById(R.id.projectApplyBtn);
+
 
         projectTitle.setText(getArguments().getString("title"));
         advisorName.setText(getArguments().getString("advisorName"));
@@ -64,6 +87,118 @@ public class ProjectView extends Fragment {
         techStackTextView.setText(getArguments().getString("techStack"));
         requiredStudentsTextView.setText(getArguments().getString("requiredStudents"));
         allocationStatusTextView.setText(getArguments().getString("allocationStatus"));
+
+        projectApplyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                postNewComment(getContext());
+                /***************************Trying POST command******************************/
+                /****************************************************************************/
+                try {
+                    RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+                    String URL = "http://prof-student-matching.herokuapp.com/students/swastik18269/update_fields/";
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("sec_name", "Jain");
+                    jsonBody.put("proj_applied","{1:0,3:0,7:0}");
+                    final String requestBody = jsonBody.toString();
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Log.i("VOLLEY", response);
+                            Toast.makeText(getContext(),"You have successfully applied", Toast.LENGTH_SHORT).show();
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("VOLLEY", error.toString());
+                        }
+
+                    }) {
+                        @Override
+                        public String getBodyContentType() {
+                            return "application/json; charset=utf-8";
+                        }
+
+                        @Override
+                        public byte[] getBody() throws AuthFailureError {
+                            try {
+                                return requestBody == null ? null : requestBody.getBytes("utf-8");
+                            } catch (UnsupportedEncodingException uee) {
+                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                                return null;
+                            }
+                        }
+
+                        @Override
+                        protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                            String responseString = "";
+                            if (response != null) {
+                                responseString = String.valueOf(response.statusCode);
+                                // can get more details such as response.headers
+                            }
+                            return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+                        }
+                    };
+
+                    requestQueue.add(stringRequest);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+                /****************************************************************************/
+            }
+        });
+
+
         return view;
     }
+
+/***************BACK UP POST IN CASE USME KUCH HAGGA******************/
+//    public static void postNewComment(Context context){
+////        mPostCommentResponse.requestStarted();
+//        RequestQueue queue = Volley.newRequestQueue(context);
+//        StringRequest sr = new StringRequest(Request.Method.POST,"https://prof-student-matching.herokuapp.com/students/swastik18269/update_fields/", new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                System.out.println("BHAI SAB CHAL GAYA");
+////                mPostCommentResponse.requestCompleted();
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                System.out.println("BHAI ERROR AA GAYA");
+////                mPostCommentResponse.requestEndedWithError(error);
+//            }
+//        }){
+//            @Override
+//            protected Map<String,String> getParams(){
+//                Map<String,String> params = new HashMap<String, String>();
+////                params.put("user",userAccount.getUsername());
+////                params.put("pass",userAccount.getPassword());
+////                params.put("comment", Uri.encode(comment));
+////                params.put("comment_post_ID",String.valueOf(postId));
+////                params.put("blogId",String.valueOf(blogId));
+//                params.put("sec_name","demo");
+//                return params;
+//            }
+//
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                Map<String,String> params = new HashMap<String, String>();
+//                params.put("Content-Type","application/x-www-form-urlencoded");
+//                return params;
+//            }
+//        };
+//        queue.add(sr);
+//    }
+//
+//    public interface PostCommentResponseListener {
+//        public void requestStarted();
+//        public void requestCompleted();
+//        public void requestEndedWithError(VolleyError error);
+//    }
+/*********************************************************************/
+
 }

@@ -71,7 +71,6 @@ public class StudentActivity extends AppCompatActivity {
         student_profile_fragment studentProfileFragment = new student_profile_fragment();
         studentProfileFragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.layoutFragment, studentProfileFragment)
-                .addToBackStack(studentProfileFragment.getClass().getName())
                 .commit();
     }
 }
