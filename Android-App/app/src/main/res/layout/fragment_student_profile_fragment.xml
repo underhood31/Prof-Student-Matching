@@ -1,125 +1,187 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingLeft="12dp"
-    android:paddingRight="12dp">
+    android:background="#f1f1f1">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corner"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
-            tools:ignore="ImageContrastCheck"
-            tools:src="@tools:sample/avatars" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_weight="0"
+            android:background="@drawable/round_square_block"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                app:cardCornerRadius="30dp">
+
+                <ImageView
+                    android:id="@+id/studentImage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0"
+                    tools:ignore="ImageContrastCheck"
+                    tools:src="@tools:sample/avatars" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/studentName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0"
+                    android:fontFamily="@font/roboto_condensed_regular"
+                    android:gravity="center"
+                    android:text="Student Name"
+                    android:textColor="#FFFDFD"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_corner_no_stroke"
+                android:backgroundTint="#f1f1f1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/studentStream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:text="Student Stream"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/rounded_corner"
+                    android:backgroundTint="#e7e7e7"
+                    android:paddingTop="5dp" />
+
+                <TextView
+                    android:id="@+id/studentDegree"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:text="Student Degree"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutResume"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="7dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewProject">
+
+                <Button
+                    android:id="@+id/studentUploadResumeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/rounded_button"
+                    android:text="ADD RESUME" />
+
+                <Button
+                    android:id="@+id/studentDownloadResumeBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="0.2"
+                    android:background="@drawable/rounded_button"
+                    android:text="VIEW RESUME" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            android:background="#e9e9e9"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/studentName"
-                android:layout_width="wrap_content"
+                android:id="@+id/listofProjects"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:text="Student Name"
-                android:textColor="#000000"
-                android:textSize="20sp" />
+                android:fontFamily="@font/roboto_condensed_regular"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="My Projects"
+                android:textAlignment="viewStart"
+                android:textColor="#444444"
+                android:textSize="24sp"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutResume" />
 
-            <TextView
-                android:id="@+id/studentStream"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Student Stream"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewProject"
+                android:layout_width="match_parent"
+                android:layout_height="318dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:scrollbars="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/listofProjects">
 
-            <TextView
-                android:id="@+id/studentDegree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Student Degree"
-                android:textColor="#000000"
-                android:textSize="18sp" />
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayoutResume"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="7dp"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewProject">
-
-        <Button
-            android:id="@+id/studentUploadResumeBtn"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="0.2"
-            android:background="@drawable/rounded_button"
-            android:text="ADD RESUME" />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewProject">
 
-        <Button
-            android:id="@+id/studentDownloadResumeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:layout_weight="0.2"
-            android:background="@drawable/rounded_button"
-            android:text="VIEW RESUME" />
+            <Button
+                android:id="@+id/studentApplyProjectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button"
+                android:text="Apply for a Project"
+                android:textAlignment="viewStart" />
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/listofProjects"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/rounded_corner"
-        android:text="\tList of Projects Applied for"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutResume"
-    />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewProject"
-        android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/rounded_corner"
-        android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/listofProjects"
-        />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerViewProject"
-        >
-
-        <Button
-            android:id="@+id/studentApplyProjectBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/rounded_button"
-            android:text="Apply for a Project"
-            android:textAlignment="viewStart" />
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

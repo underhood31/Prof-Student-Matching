@@ -1,6 +1,8 @@
 package in.ac.iiitd.projecto;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,6 +40,7 @@ public class Student_list_of_project extends Fragment {
     private ArrayList<ProjectItem> projectItemArrayList;
     private ProjectAdapter projectAdapter;
     private RequestQueue requestQueue;
+    private TextView sortText,filterText,searchText;
 
     private static final String TAG = "VolleyProjectActivity";
 

@@ -3,6 +3,35 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/divider_round_corner.xml" value="0.224" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/layout_bg.xml" value="0.193" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/round_image.xml" value="0.213" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/round_square_block.xml" value="0.213" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/round_square_block_corner.xml" value="0.205" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_button.xml" value="0.1" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_button_circle.xml" value="0.202" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_corner.xml" value="0.193" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_corner_image.xml" value="0.224" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_corner_layout.xml" value="0.193" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_corner_no_stroke.xml" value="0.193" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/drawable/rounded_edittext.xml" value="0.1995" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/activity_student.xml" value="0.21164021164021163" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/fragment_project_view.xml" value="0.21164021164021163" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/fragment_student_profile_fragment.xml" value="0.2118270079435128" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_professor.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_student.xml" value="0.25" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_login.xml" value="0.25" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_prof_list_of_projects.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_prof_list_of_student.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_prof_profile.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_prof_student_profile.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_project_view.xml" value="0.4" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_list_of_project.xml" value="0.25" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_profile_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/interest_item.xml" value="0.20521590423257802" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/project_list_item.xml" value="0.25" />
+        <entry key="..\:/Users/Asus/AndroidStudioProjects/Prof-Student-Matching/Android-App/app/src/main/res/layout/student_list_item.xml" value="0.20521590423257802" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1785" />
@@ -25,5 +54,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.4" />
+      </ProjectState>
+    </option>
   </component>
 </project>

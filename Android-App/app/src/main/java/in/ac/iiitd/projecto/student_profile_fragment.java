@@ -3,6 +3,8 @@ package in.ac.iiitd.projecto;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +48,7 @@ public class student_profile_fragment extends Fragment {
 
     private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn ;
     private TextView studentName, studentStream, studentDegree;
+    private ImageView studentImage;
     private RequestQueue requestQueue, studentRequestQueue;
     private static final String TAG = "VolleyActivity";
     private ArrayList<ProjectItem> studentProjectArrayList;
@@ -76,6 +80,11 @@ public class student_profile_fragment extends Fragment {
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
+        Bitmap bitmapImage= BitmapFactory.decodeResource(getResources(),R.drawable.peeyush_image);
+        int nh = (int) ( bitmapImage.getHeight() * (512.0 / bitmapImage.getWidth()) );
+        Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
+        studentImage=(ImageView)view.findViewById(R.id.studentImage);
+        studentImage.setImageBitmap(scaled);
         /**********Viewing and Uploading Resume***********************************/
         /****************************************************************************/
         studentUploadResumeBtn.setOnClickListener(new View.OnClickListener() {

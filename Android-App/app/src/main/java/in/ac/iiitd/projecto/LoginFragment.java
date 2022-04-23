@@ -57,7 +57,10 @@ public class LoginFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),StudentActivity.class);
-
+                if(userEmailAddress.getText().toString().compareTo("peeyush")==0){
+                    Intent intent1= new Intent(getActivity(),ProfessorActivity.class);
+                    startActivity(intent1);
+                }
                 if (!isEmailValid(userEmailAddress.getText().toString())) {
                     Toast toast = Toast.makeText(getContext(), "Invalid Email ID",Toast.LENGTH_SHORT);
                     toast.show();

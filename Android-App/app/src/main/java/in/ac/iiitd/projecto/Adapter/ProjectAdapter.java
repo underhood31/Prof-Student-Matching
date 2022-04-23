@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -44,9 +49,13 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         ProjectItem item = projectItemArrayList.get(position);
-
+        Resources res=holder.itemView.getContext().getResources();
         holder.projectTitle.setText(item.getProjectTitle());
         holder.projectAdvisorName.setText(item.getProjectAdvisorName());
+        Bitmap bitmapImage= BitmapFactory.decodeResource(res,R.drawable.sample_project_1);
+        int nh = (int) ( bitmapImage.getHeight() * (400.0 / bitmapImage.getWidth()) );
+        Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, 300, nh, true);
+        holder.projectImage.setImageBitmap(scaled);
 
     }
 
@@ -58,6 +67,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView projectTitle, projectAdvisorName;
+        private ImageView projectImage;
 
         public ViewHolder(View itemView)
         {
@@ -65,6 +75,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
 
             projectTitle = itemView.findViewById(R.id.projectTitle);
             projectAdvisorName = itemView.findViewById(R.id.projectAdvisorName);
+            projectImage=itemView.findViewById(R.id.projectImage);
 
             itemView.setOnClickListener(this);
         }

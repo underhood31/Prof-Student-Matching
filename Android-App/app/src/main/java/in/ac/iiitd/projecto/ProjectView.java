@@ -2,6 +2,8 @@ package in.ac.iiitd.projecto;
 
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,7 @@ import java.util.Map;
 public class ProjectView extends Fragment {
 
     private TextView projectTitle, advisorName, projectDescriptionTextView, timeRequiredTextView, techStackTextView, requiredStudentsTextView, allocationStatusTextView;
+    private ImageView projectImage;
     private Button projectApplyBtn, projectWithdrawBtn;
     public ProjectView() {
         // Required empty public constructor
@@ -70,6 +74,11 @@ public class ProjectView extends Fragment {
         View view = inflater.inflate(R.layout.fragment_project_view, container, false);
 
         projectTitle = view.findViewById(R.id.projectTitle);
+        projectImage=(ImageView)view.findViewById(R.id.projectImageView);
+        Bitmap bitmapImage= BitmapFactory.decodeResource(view.getContext().getResources(),R.drawable.sample_project_1);
+        int nh = (int) ( bitmapImage.getHeight() * (500.0 / bitmapImage.getWidth()) );
+        Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage,400 , nh, true);
+        projectImage.setImageBitmap(scaled);
         advisorName = view.findViewById(R.id.advisorName);
         projectDescriptionTextView = view.findViewById(R.id.projectDescriptionTextView);
         timeRequiredTextView = view.findViewById(R.id.timeRequiredTextView);
