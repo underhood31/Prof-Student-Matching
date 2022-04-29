@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.identity.BeginSignInResult;
@@ -27,6 +28,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
     private Button googleSignIn;
@@ -34,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private BeginSignInRequest signInRequest;
     private FirebaseAuth mAuth;
     private static final int REQ_ONE_TAP = 2;
+    private AppCompatActivity thisActivity = this;
     @Override
     protected void onStart() {
         super.onStart();
@@ -42,9 +49,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser currentUser) {
+
         if (currentUser!=null) {
             //update UI
             Log.d("User Login", "Got ");
+            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+            firebaseDatabase.getReference("registered").child(currentUser.getEmail().split("@")[0]).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        String type=(String) task.getResult().getValue();
+                        if (type.equals("student")) {
+                            Intent intent = new Intent(getApplicationContext(),StudentActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(thisActivity, "Professor part not implemented yet.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    else{
+                        Toast.makeText(thisActivity, "Database Task Unsuccessful", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
         }
         else {
             Log.d("User Login", "Null ");
@@ -68,23 +96,49 @@ public class MainActivity extends AppCompatActivity {
                         // Got an ID token from Google. Use it to authenticate
                         // with your backend.
                         Log.d("idToken", "Got ID token.");
-                        AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
-                        mAuth.signInWithCredential(firebaseCredential)
-                                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<AuthResult> task) {
-                                        if (task.isSuccessful()) {
-                                            // Sign in success, update UI with the signed-in user's information
-                                            Log.d("Signin", "signInWithCredential:success");
-                                            FirebaseUser user = mAuth.getCurrentUser();
-                                            updateUI(user);
-                                        } else {
-                                            // If sign in fails, display a message to the user.
-                                            Log.w("Signin", "signInWithCredential:failure", task.getException());
-                                            updateUI(null);
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        firebaseDatabase.getReference("registered").child(username.split("@")[0]).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d("GetResult", "onComplete: "+task.getResult());
+                                    if (task.getResult().getValue()!=null) {
+                                        boolean isIIITD =username.split("@")[1].equals("iiitd.ac.in");
+                                        Log.d("userID", "onActivityResult: "+ username +"\t"+isIIITD);
+
+                                        if (!isIIITD){
+                                            Toast.makeText(thisActivity, "Cannot login: The user is not IIITDian", Toast.LENGTH_SHORT).show();
+                                            return;
                                         }
+                                        AuthCredential firebaseCredential = GoogleAuthProvider.getCredential(idToken, null);
+                                        mAuth.signInWithCredential(firebaseCredential)
+                                                .addOnCompleteListener(thisActivity, new OnCompleteListener<AuthResult>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                                        if (task.isSuccessful()) {
+
+                                                            // Sign in success, update UI with the signed-in user's information
+                                                            Log.d("Signin", "signInWithCredential:success");
+                                                            FirebaseUser user = mAuth.getCurrentUser();
+                                                            updateUI(user);
+                                                        } else {
+                                                            // If sign in fails, display a message to the user.
+                                                            Log.w("Signin", "signInWithCredential:failure", task.getException());
+                                                            updateUI(null);
+                                                        }
+                                                    }
+                                                });
                                     }
-                                });
+                                    else {
+                                        Toast.makeText(thisActivity, "Cannot login: User not registered in the database", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(thisActivity, "Database Task Unsuccessful", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
                     } else if (password != null) {
                         // Got a saved username and password. Use them to authenticate
                         // with your backend.
