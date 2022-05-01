@@ -1,90 +1,62 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:orientation="vertical"
-    android:gravity="center">
-
-    <EditText
-        android:id="@+id/userEmailAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/rounded_edittext"
-        android:hint="\tEmail"
-        android:minHeight="48dp"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/userPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/rounded_edittext"
-        android:ems="10"
-        android:hint="\tPassword"
-        android:inputType="textPassword"
-        android:minHeight="48dp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:minHeight="48dp"
-        android:text="Forgot Password?"
-        android:textAlignment="textEnd"
-        android:textColor="#000000"
-        android:textSize="16sp" />
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
-            android:id="@+id/userSignInBtn"
-            style="@style/Widget.AppCompat.Button"
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="273dp"
+            android:background="@drawable/blue_bg">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/style1singlecolorsmall"/>
+        </FrameLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@drawable/rounded_button"
-            android:text="\t\tSign In\t\t"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="150sp"
+            >
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
+            <ImageView
+                android:layout_width="59dp"
+                android:layout_height="31dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15sp"
+                android:src="@drawable/google" />
+            <Button
+                android:id="@+id/google_sign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google sign in"
+                android:fontFamily="@font/poppins_medium"
+                />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/makers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_weight="0"
-            android:text="New User?"
-            android:textAlignment="textEnd"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:layout_marginTop="150sp"
+            android:layout_gravity="center"
+            android:text="Made with ♥ by Team Jain Shikanji"
+            android:fontFamily="@font/poppins_regular"/>
 
-        <TextView
-            android:id="@+id/userSignUpBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_weight="0"
-            android:clickable="true"
-            android:text="Sign Up"
-            android:textColor="#EC0000"
-            android:textSize="16sp"
-            tools:ignore="TouchTargetSizeCheck" />
+
+
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
