@@ -48,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
+
+
     private void updateUI(FirebaseUser currentUser) {
 
         if (currentUser!=null) {

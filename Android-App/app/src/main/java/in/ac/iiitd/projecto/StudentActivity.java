@@ -1,5 +1,6 @@
 package in.ac.iiitd.projecto;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,9 +12,44 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class StudentActivity extends AppCompatActivity {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.example_menu, menu);
+        return true;
+    }
+
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
+        onBackPressed();
+        /*
+         * TODO:
+         * 1) Delete the downloaded profile picture
+         * 2) Delete the downloaded resume
+         * */
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.logoutButton:
+                signOut();
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+
+    }
+
     private BroadcastReceiver bReceiver = new BroadcastReceiver(){
 
         @Override

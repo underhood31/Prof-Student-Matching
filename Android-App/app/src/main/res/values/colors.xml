@@ -10,5 +10,7 @@
     <color name="red_start">#fb5966</color>
     <color name="red_mid">#e94072</color>
     <color name="red_end">#da307a</color>
-
+    <color name="blue">#1566e0</color>
+    <color name="blue_dark">#0c4eb0</color>
+    <color name="blue_light">#4386de</color>
 </resources>

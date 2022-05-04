@@ -84,6 +84,14 @@ public class student_profile_fragment extends Fragment {
         int nh = (int) ( bitmapImage.getHeight() * (512.0 / bitmapImage.getWidth()) );
         Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
         studentImage=(ImageView)view.findViewById(R.id.studentImage);
+        /*
+        * TODO: Download the image from firebase and add here.
+        *
+        * 1. Check if the image is available offline.
+        * 2. If not download and save the image
+        * 3. When logging out, delete the image.!!!!
+        * */
+
         studentImage.setImageBitmap(scaled);
         /**********Viewing and Uploading Resume***********************************/
         /****************************************************************************/

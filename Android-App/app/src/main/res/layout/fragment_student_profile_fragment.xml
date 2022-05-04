@@ -1,11 +1,14 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f1f1f1">
+<!--<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="#f1f1f1">-->
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -26,8 +29,8 @@
 
                 <ImageView
                     android:id="@+id/studentImage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
                     android:layout_gravity="center"
                     android:layout_weight="0"
                     tools:ignore="ImageContrastCheck"
@@ -55,7 +58,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="200sp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
@@ -63,21 +66,22 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/rounded_corner_no_stroke"
                 android:backgroundTint="#f1f1f1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center">
 
                 <TextView
                     android:id="@+id/studentStream"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_weight="1"
                     android:text="Student Stream"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="12sp" />
 
                 <View
                     android:id="@+id/divider"
@@ -93,15 +97,15 @@
                     android:id="@+id/studentDegree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="7dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_weight="1"
                     android:text="Student Degree"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -158,13 +162,24 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewProject"
                 android:layout_width="match_parent"
-                android:layout_height="318dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:scrollbars="vertical"
                 app:layout_constraintTop_toBottomOf="@+id/listofProjects">
 
+
             </androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/studentApplyProjectBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/rounded_button"
+                android:text="Apply for a Project"
+                android:textAlignment="viewStart" />
         </LinearLayout>
 
         <LinearLayout
@@ -174,14 +189,6 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewProject">
 
-            <Button
-                android:id="@+id/studentApplyProjectBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/rounded_button"
-                android:text="Apply for a Project"
-                android:textAlignment="viewStart" />
         </LinearLayout>
     </LinearLayout>
-</ScrollView>
+<!--</ScrollView>-->
