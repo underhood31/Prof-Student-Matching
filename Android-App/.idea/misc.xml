@@ -38,13 +38,18 @@
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2985" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.2985" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/drawable/ic_logout.xml" value="0.196" />
+        <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/drawable/loading.xml" value="0.196" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/drawable/round_square_block.xml" value="0.192" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout-land/activity_student.xml" value="0.27291666666666664" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_main.xml" value="0.23731884057971014" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout/activity_student.xml" value="0.23731884057971014" />
+        <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout/changedp_fragment.xml" value="0.10648148148148148" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_prof_profile.xml" value="0.1" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout/fragment_student_profile_fragment.xml" value="0.10648148148148148" />
+        <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/layout/loading_fragment.xml" value="0.16" />
         <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/menu/example_menu.xml" value="0.33" />
+        <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/menu/imageupload_menu.xml" value="0.10648148148148148" />
+        <entry key="..\:/git/Prof-Student-Matching/Android-App/app/src/main/res/xml/file_path.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/rounded_button.xml" value="0.1785" />

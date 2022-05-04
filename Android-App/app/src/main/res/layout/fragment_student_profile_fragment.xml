@@ -30,11 +30,25 @@
                 <ImageView
                     android:id="@+id/studentImage"
                     android:layout_width="100sp"
-                    android:layout_height="100sp"
+                    android:layout_height="130sp"
                     android:layout_gravity="center"
                     android:layout_weight="0"
                     tools:ignore="ImageContrastCheck"
-                    tools:src="@tools:sample/avatars" />
+                    tools:src="@tools:sample/avatars"
+                    android:visibility="gone"/>
+                <LinearLayout
+                    android:id="@+id/imagePlaceHolder"
+                    android:layout_width="100sp"
+                    android:layout_height="130sp"
+                    android:visibility="visible"
+                    android:gravity="center">
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:indeterminate="true"/>
+
+                </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <LinearLayout

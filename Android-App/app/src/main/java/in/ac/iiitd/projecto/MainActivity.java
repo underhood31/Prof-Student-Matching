@@ -41,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
     private BeginSignInRequest signInRequest;
     private FirebaseAuth mAuth;
     private static final int REQ_ONE_TAP = 2;
+    private LoadingFragment loadingFragment;
     private AppCompatActivity thisActivity = this;
     @Override
     protected void onStart() {
         super.onStart();
+        loadingFragment = new LoadingFragment();
+        loadingFragment.show(getSupportFragmentManager(),"Loading...");
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
     }
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser) {
 
         if (currentUser!=null) {
+
             //update UI
             Log.d("User Login", "Got ");
             FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -63,13 +67,18 @@ public class MainActivity extends AppCompatActivity {
                         if (type.equals("student")) {
                             Intent intent = new Intent(getApplicationContext(),StudentActivity.class);
                             intent.putExtra("userEmailAddress", currentUser.getEmail());
+                            loadingFragment.dismiss();
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(thisActivity, "Professor part not implemented yet.", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(),ProfessorActivity.class);
+                            intent.putExtra("userEmailAddress", currentUser.getEmail());
+                            loadingFragment.dismiss();
+                            startActivity(intent);
                         }
                     }
                     else{
+                        loadingFragment.dismiss();
                         Toast.makeText(thisActivity, "Database Task Unsuccessful", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -77,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else {
+            loadingFragment.dismiss();
             Log.d("User Login", "Null ");
         }
 
@@ -84,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        loadingFragment = new LoadingFragment();
+        loadingFragment.show(getSupportFragmentManager(),"Loading...");
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("RequestCode", "onActivityResult: "+requestCode);
         switch (requestCode) {
@@ -194,6 +206,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void signIn() {
+        // Starting the loading animation.
+
         oneTapClient.beginSignIn(signInRequest)
                 .addOnSuccessListener(this, new OnSuccessListener<BeginSignInResult>() {
                     @Override
