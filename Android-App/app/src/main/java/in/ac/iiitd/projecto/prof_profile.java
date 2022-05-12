@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -24,6 +25,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,20 +40,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+
+import in.ac.iiitd.projecto.Model.UserDetails;
 
 public class prof_profile extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
     private ImageView profImage;
     private final int CAMERA_REQUEST=1;
     private final int PICK_IMAGE_REQUEST=2;
@@ -58,6 +64,7 @@ public class prof_profile extends Fragment {
     TextView profName;
     ImageButton btnProfAddProject;
     Button btnChat;
+    TextView profContactTextView, profRoomTextView, profDesignationTextView, profLabTextView;
 
     private void saveImage(Bitmap imageBitmap) {
         StorageReference imagesRef = storageRef.child(currentUser.getEmail());
@@ -145,6 +152,37 @@ public class prof_profile extends Fragment {
         Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
         profImage=(ImageView) view.findViewById(R.id.profImage);
 
+        profContactTextView = view.findViewById(R.id.profContactTextView);
+        profRoomTextView = view.findViewById(R.id.profRoomTextview);
+        profDesignationTextView = view.findViewById(R.id.profDesignationTextView);
+        profLabTextView = view.findViewById(R.id.profLabTextView);
+
+//        String url = "https://prof-student-matching.herokuapp.com/prof/mukulika/";
+        StringBuilder urlsb = new StringBuilder();
+
+        urlsb.append("https://prof-student-matching.herokuapp.com/prof/");
+//        urlsb.append(currentUser.getDisplayName());
+        urlsb.append("mukulika");
+        urlsb.append("/");
+        String url = urlsb.toString();
+        System.out.println("printing URL: " + url);
+
+        StringRequest request = new StringRequest(Request.Method.GET, url.toString(), new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                System.out.println("request succesful: "+ s);
+                doOnSuccess(s);
+            }
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError);
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(getContext());
+        rQueue.add(request);
+
         registerForContextMenu(profImage);
 
         String image_path = getDP();
@@ -179,6 +217,40 @@ public class prof_profile extends Fragment {
 
         return view;
     }
+
+    public void doOnSuccess(String s){
+        try {
+            JSONObject obj = new JSONObject(s);
+            System.out.println("inside success");
+
+            Iterator i = obj.keys();
+            String key = "";
+
+            while(i.hasNext()){
+                key = i.next().toString();
+                if(key.equals("room_no")){
+                    profRoomTextView.setText(obj.get(key).toString());
+                }
+
+                else if(key.equals("des")){
+                    profDesignationTextView.setText(obj.get(key).toString());
+                }
+
+                else if(key.equals("contact")){
+                    profContactTextView.setText(obj.get(key).toString());
+                }
+
+                else if(key.equals("lab_name")){
+                    profLabTextView.setText(obj.get(key).toString());
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String getDP() {
         StorageReference imagesRef = storageRef.child(currentUser.getEmail());
         File localFile;

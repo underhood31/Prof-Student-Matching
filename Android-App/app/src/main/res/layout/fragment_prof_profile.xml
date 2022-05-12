@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/round_square_block"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="10dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -32,7 +33,7 @@
             <LinearLayout
                 android:id="@+id/profImagePlaceHolder"
                 android:layout_width="100sp"
-                android:layout_height="130sp"
+                android:layout_height="110sp"
                 android:visibility="visible"
                 android:gravity="center">
 
@@ -41,7 +42,10 @@
                     android:layout_height="match_parent"
                     android:indeterminate="true"/>
 
+
             </LinearLayout>
+
+
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
@@ -65,63 +69,211 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_corner_no_stroke"
+            android:backgroundTint="#e9e9e9"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/profContact"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Contact"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/profContactTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" Backend"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_corner_no_stroke"
+            android:backgroundTint="#e9e9e9"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/profRoom"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Room number"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/profRoomTextview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" Backend"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_corner_no_stroke"
+            android:backgroundTint="#e9e9e9"
+            android:orientation="horizontal"
+           >
+
+            <TextView
+                android:id="@+id/profLab"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Lab Name"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/profLabTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" Backend"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_corner_no_stroke"
+            android:backgroundTint="#e9e9e9"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/profDesignation"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="Designation"
+                android:textColor="#000000"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/profDesignationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=" Backend"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+
+
     </LinearLayout>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="#e9e9e9"
-        android:orientation="vertical">
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/rounded_corner_no_stroke"
-            android:backgroundTint="#DFDFDF"
+            android:textStyle="bold"
             android:text="Area of Research"
             android:textColor="#000000"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="200dp"
             android:background="@drawable/rounded_corner_no_stroke"
-            android:backgroundTint="#e9e9e9" />
+           />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/prof_chats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="50dp"
-        android:background="@drawable/rounded_corner_no_stroke"
-        android:text="Chats"
-        android:textSize="16sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/rounded_corner_no_stroke"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/prof_chats"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/rounded_corner_no_stroke"
+            android:text="Chats"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/studentList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/rounded_corner_no_stroke"
+            android:text="Student List"
+            />
 
         <ImageButton
             android:id="@+id/prof_add_project_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/rounded_button_circle"
             android:backgroundTint="@color/red_end"
             android:contentDescription="AddProject"
@@ -134,6 +286,15 @@
             android:scaleY="1.3"
             app:srcCompat="@android:drawable/ic_input_add"
             app:tint="#000000" />
+
+
     </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
 
 </LinearLayout>
