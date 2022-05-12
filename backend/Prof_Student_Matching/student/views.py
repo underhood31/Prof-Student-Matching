@@ -49,9 +49,28 @@ class StudentViewSet(viewsets.ModelViewSet):
                 new_add = int(request.data[field])
                 cur_lis.add(new_add)
                 final_proj = str(list(cur_lis))
-                # print(cur_lis,int(request.data[field]),)
-                # print(request.data[field])
-                # print(final_proj)
+                setattr(stud_instance,field,final_proj)
+            stud_instance.save()
+        except :
+            return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+        return Response("Update Accepted", status=status.HTTP_200_OK)
+
+    @action(methods=['post'], detail=True)
+    def withdraw_proj(self,request,pk):
+        try:
+            if(pk == None):
+                raise Exception()
+            stud_id = pk
+            stud_instance = Student.objects.get(email=stud_id)
+            for field in request.data:
+                cur_lis = set()
+                if(getattr(stud_instance,field)!="[]"):
+                    cur_lis = set(map(int,getattr(stud_instance,field).strip('][').split(',')))
+                new_add = int(request.data[field])
+                if new_add in cur_lis:
+                    cur_lis.remove(new_add)
+                final_proj = str(list(cur_lis))
                 setattr(stud_instance,field,final_proj)
             stud_instance.save()
         except :
