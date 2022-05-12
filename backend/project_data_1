@@ -315,5 +315,64 @@
         "res_interest2": 2,
         "res_interest3": 3
     }
-]s
+]
+
+[
+    {
+        "id": 1,
+        "fieldName": "Machine Learning"
+    },
+    {
+        "id": 2,
+        "fieldName": "Deep Learning"
+    },
+    {
+        "id": 3,
+        "fieldName": "Systems"
+    },
+    {
+        "id": 4,
+        "fieldName": "Mobile Computing"
+    },
+    {
+        "id": 5,
+        "fieldName": "Theoritical Computer Science"
+    },
+    {
+        "id": 6,
+        "fieldName": "Computer Vision"
+    },
+    {
+        "id": 7,
+        "fieldName": "NLP"
+    },
+    {
+        "id": 8,
+        "fieldName": "Network Security"
+    },
+    {
+        "id": 9,
+        "fieldName": "Networking"
+    },
+    {
+        "id": 10,
+        "fieldName": "Wireless Computing"
+    },
+    {
+        "id": 11,
+        "fieldName": "Affective Computing"
+    },
+    {
+        "id": 12,
+        "fieldName": "HCI"
+    },
+    {
+        "id": 13,
+        "fieldName": "HCD"
+    },
+    {
+        "id": 14,
+        "fieldName": "Speculative Design"
+    }
+]
 
