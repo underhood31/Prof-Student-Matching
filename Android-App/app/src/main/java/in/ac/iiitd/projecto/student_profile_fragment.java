@@ -69,7 +69,7 @@ import org.json.JSONObject;
 
 public class student_profile_fragment extends Fragment {
 
-    private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn ;
+    private Button studentUploadResumeBtn, studentDownloadResumeBtn, studentApplyProjectBtn, btnChat ;
     private TextView studentName, studentStream, studentDegree;
     private ImageView studentImage;
     private RequestQueue requestQueue, studentRequestQueue;
@@ -219,6 +219,7 @@ public class student_profile_fragment extends Fragment {
 
         String rollno=getArguments().getString("rollno");
         System.out.println("The roll number is : "+ rollno);
+        btnChat = view.findViewById(R.id.studentChat);
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
@@ -307,6 +308,14 @@ public class student_profile_fragment extends Fragment {
                 fragmentTransaction.replace(R.id.layoutFragment,studentListOfProject)
                         .addToBackStack(studentListOfProject.getClass().getName())
                         .commit();
+            }
+        });
+
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Users.class);
+                startActivity(intent);
             }
         });
         return view;
