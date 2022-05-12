@@ -35,6 +35,6 @@ class Project(models.Model):
     alloc_stat = models.BooleanField(default=False,help_text="This helps to determine if the project has been allocated to students")
     req_stu_no = models.IntegerField(null=False,help_text="This helps in determining the number of students required for a project")
     advisor_id = models.JSONField(null=True,help_text="This stores the advisor's name for this project")
-    apl_stud = models.JSONField(null=True,help_text="Roll number of the students who applied this project")
+    apl_stud = models.CharField(max_length=400,help_text="Roll number of the students who applied this project",default="[]")
 
 

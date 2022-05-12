@@ -34,6 +34,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
             proj_id = pk
             proj_instance = Project.objects.get(id=proj_id)
             for field in request.data:
+                print(request.data[field])
                 setattr(proj_instance,field,request.data[field])
             proj_instance.save()
         except:

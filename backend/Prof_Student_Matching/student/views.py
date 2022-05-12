@@ -1,4 +1,5 @@
 import email
+import ast
 from http.client import HTTPResponse
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -7,6 +8,7 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from .serializers import StudentSerializer
 from .models import Student
+from prof.models import Project
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
@@ -42,6 +44,7 @@ class StudentViewSet(viewsets.ModelViewSet):
                 raise Exception()
             stud_id = pk
             stud_instance = Student.objects.get(email=stud_id)
+            
             for field in request.data:
                 cur_lis = set()
                 if(getattr(stud_instance,field)!="[]"):
@@ -50,6 +53,20 @@ class StudentViewSet(viewsets.ModelViewSet):
                 cur_lis.add(new_add)
                 final_proj = str(list(cur_lis))
                 setattr(stud_instance,field,final_proj)
+                
+                proj_instance = Project.objects.get(id=new_add)
+                app_username = set()
+                # print(app_username)
+                if(getattr(proj_instance,"apl_stud")!="[]"):
+                    app_username = set(ast.literal_eval(getattr(proj_instance,"apl_stud")))
+                    # app_username = set(getattr(proj_instance,"apl_stud").strip('][').split(","))
+                print(app_username,type(app_username))
+                app_username.add(stud_id)
+                # print(app_username)
+
+                print(str(list(app_username)))
+                setattr(proj_instance,"apl_stud",str(list(app_username)))
+                proj_instance.save()
             stud_instance.save()
         except :
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
@@ -72,6 +89,23 @@ class StudentViewSet(viewsets.ModelViewSet):
                     cur_lis.remove(new_add)
                 final_proj = str(list(cur_lis))
                 setattr(stud_instance,field,final_proj)
+
+                proj_instance = Project.objects.get(id=new_add)
+                app_username = set()
+                # print(app_username)
+                if(getattr(proj_instance,"apl_stud")!="[]"):
+                    app_username = set(ast.literal_eval(getattr(proj_instance,"apl_stud")))
+                    # app_username = set(getattr(proj_instance,"apl_stud").strip('][').split(","))
+                print(app_username,type(app_username))
+                if stud_id in app_username:
+                    app_username.remove(stud_id)
+                # print(app_username)
+
+                print(str(list(app_username)))
+                setattr(proj_instance,"apl_stud",str(list(app_username)))
+                proj_instance.save()
+
+
             stud_instance.save()
         except :
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
