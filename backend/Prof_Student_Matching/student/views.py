@@ -9,6 +9,8 @@ from rest_framework.decorators import action
 from .serializers import StudentSerializer
 from .models import Student
 from prof.models import Project
+from prof.serializers import ProjectSerializer
+
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.all()
@@ -109,5 +111,25 @@ class StudentViewSet(viewsets.ModelViewSet):
             stud_instance.save()
         except :
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+        return Response("Update Accepted", status=status.HTTP_200_OK)
+
+    @action(methods=['get'], detail=True)
+    def sel_proj(self,request,pk):
+        if(pk == None):
+            raise Exception()
+        stud_id = pk
+        stud_instance = Student.objects.get(email=stud_id)
+        print(getattr(stud_instance,"proj_selected"))
+        # lis = ast.literal_eval(getattr(stud_instance,"proj_selected"))
+        # for i in lis:
+        #     # ProjectSerializer()
+        #     # data=ProjectSerializer(self.get_queryset(id= i), many=True).data
+        #     print(Project.objects.filter(id = i).values())
+        #     # print(ProjectSerializer.serialize("json", Project.objects.get(id = 25))
+        #     # data = (Project.objects.get(id=i))
+        #     # print(data)
+        # # except:
+        # #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
         return Response("Update Accepted", status=status.HTTP_200_OK)

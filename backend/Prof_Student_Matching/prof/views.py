@@ -42,6 +42,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         return Response("Update Accepted", status=status.HTTP_200_OK)
 
+
 class ResearchFieldViewSet(viewsets.ModelViewSet):
     queryset = ResearchField.objects.all()
     serializer_class = ResearchFieldSerializer
