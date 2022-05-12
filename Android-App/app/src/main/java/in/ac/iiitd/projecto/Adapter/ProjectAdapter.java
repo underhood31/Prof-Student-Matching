@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -87,16 +88,20 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.ViewHold
 
             intent.putExtra("number", getAdapterPosition());
             intent.putExtra("title",projectItemArrayList.get(getAdapterPosition()).getProjectTitle());
+            intent.putExtra("projectId",String.valueOf(projectItemArrayList.get(getAdapterPosition()).getProjectId()));
+//            intent.putExtra("advisorName",projectItemArrayList.get(getAdapterPosition()).getProjectAdvisorName());
             intent.putExtra("advisorName",projectItemArrayList.get(getAdapterPosition()).getProjectAdvisorName());
+
             intent.putExtra("description",projectItemArrayList.get(getAdapterPosition()).getProjectDescription());
             intent.putExtra("techStack",projectItemArrayList.get(getAdapterPosition()).getProjectTechStack());
-            intent.putExtra("requiredStudents",String.valueOf(projectItemArrayList.get(getAdapterPosition()).getProjectRequiredStudents()));
+            intent.putExtra("requiredStudents",String.valueOf(projectItemArrayList.get(getAdapterPosition()).getProjectId()));
             if(projectItemArrayList.get(getAdapterPosition()).getProjectStatus())
                 intent.putExtra("allocationStatus","Allocation done");
             else
                 intent.putExtra("allocationStatus","Not Allocated until now");
 
             intent.putExtra("timeRequired",String.valueOf(projectItemArrayList.get(getAdapterPosition()).getProjectTimeRequired())+" months");
+            Log.d("TAG", "onClick: ADAPTER"+intent.getStringExtra("projectId"));
             LocalBroadcastManager.getInstance(view.getContext()).sendBroadcast(intent);
 
         }

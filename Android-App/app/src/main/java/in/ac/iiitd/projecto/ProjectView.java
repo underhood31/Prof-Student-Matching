@@ -2,6 +2,7 @@ package in.ac.iiitd.projecto;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -27,6 +28,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,7 +42,10 @@ public class ProjectView extends Fragment {
 
     private TextView projectTitle, advisorName, projectDescriptionTextView, timeRequiredTextView, techStackTextView, requiredStudentsTextView, allocationStatusTextView;
     private ImageView projectImage;
-    private Button projectApplyBtn, projectWithdrawBtn;
+    private Button projectApplyBtn, projectWithdrawBtn, chatWithProf;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private String projectID;
+    FirebaseUser currentUser = mAuth.getCurrentUser();
     public ProjectView() {
         // Required empty public constructor
     }
@@ -63,6 +69,8 @@ public class ProjectView extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState!=null){
+        }
 
     }
 
@@ -88,7 +96,6 @@ public class ProjectView extends Fragment {
         allocationStatusTextView = view.findViewById(R.id.allocationStatusTextView);
         projectApplyBtn = view.findViewById(R.id.projectApplyBtn);
         projectWithdrawBtn = view.findViewById(R.id.projectWithdrawBtn);
-
         projectTitle.setText(getArguments().getString("title"));
         advisorName.setText(getArguments().getString("advisorName"));
         projectDescriptionTextView.setText(getArguments().getString("description"));
@@ -96,19 +103,32 @@ public class ProjectView extends Fragment {
         techStackTextView.setText(getArguments().getString("techStack"));
         requiredStudentsTextView.setText(getArguments().getString("requiredStudents"));
         allocationStatusTextView.setText(getArguments().getString("allocationStatus"));
+        projectID=getArguments().getString("requiredStudents");
+        chatWithProf=view.findViewById(R.id.chatProf);
+
+        chatWithProf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Users.class);
+                startActivity(intent);
+            }
+        });
+
+        Toast.makeText(getContext(), "project ID:"+projectID, Toast.LENGTH_SHORT).show();
 
         projectApplyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                postNewComment(getContext());
+                String emailID=currentUser.getEmail().split("@")[0];
                 /***************************Trying POST command******************************/
                 /****************************************************************************/
                 try {
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                    String URL = "http://prof-student-matching.herokuapp.com/students/swastik18269/update_fields/";
+                    String URL = "http://prof-student-matching.herokuapp.com/students/"+emailID+"/add_proj_applied/";
                     JSONObject jsonBody = new JSONObject();
-                    jsonBody.put("sec_name", "Jain");
-                    jsonBody.put("proj_applied","{1:0,9:0,7:0,12:0}");
+
+                    jsonBody.put("proj_applied",projectID);
                     final String requestBody = jsonBody.toString();
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
@@ -160,6 +180,7 @@ public class ProjectView extends Fragment {
             }
         });
         projectWithdrawBtn.setOnClickListener(new View.OnClickListener() {
+            String emailID=currentUser.getEmail().split("@")[0];
             @Override
             public void onClick(View view) {
 //                postNewComment(getContext());
@@ -167,10 +188,9 @@ public class ProjectView extends Fragment {
                 /****************************************************************************/
                 try {
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                    String URL = "http://prof-student-matching.herokuapp.com/students/swastik18269/update_fields/";
+                    String URL = "http://prof-student-matching.herokuapp.com/students/"+emailID+"/withdraw_proj/";
                     JSONObject jsonBody = new JSONObject();
-                    jsonBody.put("sec_name", "Jain");
-                    jsonBody.put("proj_applied","{9:0,7:0,12:0}");
+                    jsonBody.put("proj_applied",projectID);
                     final String requestBody = jsonBody.toString();
 
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {

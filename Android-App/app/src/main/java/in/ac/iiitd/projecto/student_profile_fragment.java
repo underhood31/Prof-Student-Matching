@@ -82,7 +82,7 @@ public class student_profile_fragment extends Fragment {
     private final int PICK_PDF_REQUEST=3;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
 
@@ -219,7 +219,7 @@ public class student_profile_fragment extends Fragment {
 
         String rollno=getArguments().getString("rollno");
         System.out.println("The roll number is : "+ rollno);
-        btnChat = view.findViewById(R.id.studentChat);
+//        btnChat = view.findViewById(R.id.studentChat);
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
@@ -311,13 +311,13 @@ public class student_profile_fragment extends Fragment {
             }
         });
 
-        btnChat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), Users.class);
-                startActivity(intent);
-            }
-        });
+//        btnChat.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getActivity(), Users.class);
+//                startActivity(intent);
+//            }
+//        });
         return view;
     }
 
