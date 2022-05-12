@@ -8,12 +8,13 @@ public class ProjectItem {
     public ProjectItem(){
 
     }
-     public ProjectItem(String title, String projectTechStack, int projectTimeRequired, int projectRequiredStudents, Boolean projectStatus){
+     public ProjectItem(String title, String projectDescription,String projectTechStack, int projectTimeRequired, int projectRequiredStudents, Boolean projectStatus){
         this.projectTitle = title;
         this.projectTimeRequired = projectTimeRequired;
         this.projectRequiredStudents= projectRequiredStudents;
         this.projectStatus = projectStatus;
         this.projectTechStack= projectTechStack;
+        this.projectDescription=projectDescription;
      }
 
     public int getProjectId() {

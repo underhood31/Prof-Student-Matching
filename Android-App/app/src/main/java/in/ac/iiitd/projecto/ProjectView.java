@@ -2,6 +2,7 @@ package in.ac.iiitd.projecto;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class ProjectView extends Fragment {
 
     private TextView projectTitle, advisorName, projectDescriptionTextView, timeRequiredTextView, techStackTextView, requiredStudentsTextView, allocationStatusTextView;
     private ImageView projectImage;
-    private Button projectApplyBtn, projectWithdrawBtn;
+    private Button projectApplyBtn, projectWithdrawBtn, chatWithProf;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private String projectID;
     FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -103,9 +104,15 @@ public class ProjectView extends Fragment {
         requiredStudentsTextView.setText(getArguments().getString("requiredStudents"));
         allocationStatusTextView.setText(getArguments().getString("allocationStatus"));
         projectID=getArguments().getString("requiredStudents");
+        chatWithProf=view.findViewById(R.id.chatProf);
 
-
-
+        chatWithProf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Users.class);
+                startActivity(intent);
+            }
+        });
 
         Toast.makeText(getContext(), "project ID:"+projectID, Toast.LENGTH_SHORT).show();
 
@@ -181,7 +188,7 @@ public class ProjectView extends Fragment {
                 /****************************************************************************/
                 try {
                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-                    String URL = "http://prof-student-matching.herokuapp.com/students/"+emailID+"/update_fields/";
+                    String URL = "http://prof-student-matching.herokuapp.com/students/"+emailID+"/withdraw_proj/";
                     JSONObject jsonBody = new JSONObject();
                     jsonBody.put("proj_applied",projectID);
                     final String requestBody = jsonBody.toString();

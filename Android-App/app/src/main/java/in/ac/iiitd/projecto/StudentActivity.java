@@ -24,7 +24,7 @@ public class StudentActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.example_menu, menu);
+        inflater.inflate(R.menu.example_menu_student, menu);
         return true;
     }
 
@@ -44,7 +44,13 @@ public class StudentActivity extends AppCompatActivity {
             case R.id.logoutButton:
                 signOut();
                 return true;
-
+            case R.id.projSelected:
+                FragmentManager fragmentManager = this.getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                StudentSelectedProjectFragment studentListOfProject = new StudentSelectedProjectFragment();
+                fragmentTransaction.replace(R.id.layoutFragment,studentListOfProject)
+                        .addToBackStack(studentListOfProject.getClass().getName())
+                        .commit();
         }
         return super.onOptionsItemSelected(item);
 
