@@ -65,7 +65,8 @@ public class prof_profile extends Fragment {
     ImageButton btnProfAddProject;
     Button btnChat;
     TextView profContactTextView, profRoomTextView, profDesignationTextView, profLabTextView;
-
+    private String contact, roomNo, lab, designation, res1,res2,res3;
+    private int profId;
     private void saveImage(Bitmap imageBitmap) {
         StorageReference imagesRef = storageRef.child(currentUser.getEmail());
 
@@ -170,7 +171,7 @@ public class prof_profile extends Fragment {
         StringRequest request = new StringRequest(Request.Method.GET, url.toString(), new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
-                System.out.println("request succesful: "+ s);
+                System.out.println("request successful: "+ s);
                 doOnSuccess(s);
             }
         },new Response.ErrorListener(){
@@ -199,8 +200,8 @@ public class prof_profile extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                Student_list_of_project studentListOfProject = new Student_list_of_project();
-                AddProject addProject = new AddProject();
+                StudentSelectedProjectFragment studentListOfProject = new StudentSelectedProjectFragment();
+                AddProject addProject = new AddProject(profId,res1,res2,res3);
                 fragmentTransaction.replace(R.id.layoutFragmentProfessor,addProject)
                         .addToBackStack(addProject.getClass().getName())
                         .commit();
@@ -230,18 +231,34 @@ public class prof_profile extends Fragment {
                 key = i.next().toString();
                 if(key.equals("room_no")){
                     profRoomTextView.setText(obj.get(key).toString());
+                    roomNo=obj.get(key).toString();
                 }
 
                 else if(key.equals("des")){
                     profDesignationTextView.setText(obj.get(key).toString());
+                    designation=obj.get(key).toString();
                 }
 
                 else if(key.equals("contact")){
                     profContactTextView.setText(obj.get(key).toString());
+                    contact=obj.get(key).toString();
                 }
 
                 else if(key.equals("lab_name")){
                     profLabTextView.setText(obj.get(key).toString());
+                    lab=obj.get(key).toString();
+                }
+                else if (key.equals("res_interest1")) {
+                    res1=obj.get(key).toString();
+                }
+                else if (key.equals("res_interest2")) {
+                    res2=obj.get(key).toString();
+                }
+                else if (key.equals("res_interest3")) {
+                    res3=obj.get(key).toString();
+                }
+                else if (key.equals("id")) {
+                    profId= (int) obj.get(key);
                 }
 
             }
