@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class Users extends AppCompatActivity {
@@ -42,17 +43,51 @@ public class Users extends AppCompatActivity {
         usersList = (ListView)findViewById(R.id.usersList);
         noUsersText = (TextView)findViewById(R.id.noUsersText);
 
+        //////////SASTA TAREEKA FOR TESTING//////////////
+        //Currently working just for students for a particular project
+        String nameOfAdvisor = "";
+        ArrayList<String> listAdvisor = new ArrayList<>();
+        HashSet<String> hs = new HashSet<>();
+        if(getIntent().getStringExtra("advisorName")!=null){
+            nameOfAdvisor = getIntent().getStringExtra("advisorName");
+        }
+        System.out.println("The Hashset data is as follows:");
+        if(getIntent().getSerializableExtra("advisorSet")!=null){
+            hs = (HashSet<String>) getIntent().getSerializableExtra("advisorSet");
+        }
+
+        if(hs.contains("Sambuddho Chakravarty")){
+            hs.add("swastikjain101");
+        }
+        if(hs.contains("Mukulika Maity")){
+            hs.add("manavjeetsingh31");
+        }
+
+
+        System.out.println(nameOfAdvisor+"balle balle");
+
+        if(nameOfAdvisor.equals("Sambuddho Chakravarty")){
+            nameOfAdvisor = "swastikjain101";
+        }
+        else if(nameOfAdvisor.equals("Mukulika Maity")){
+            nameOfAdvisor = "manavjeetsingh31";
+        }
+        hs.add(nameOfAdvisor);
+        /////////////////////////////////////////////////
+
         pd = new ProgressDialog(Users.this);
         pd.setMessage("Loading...");
         pd.show();
 
         String url = "https://projecto-7c78f-default-rtdb.firebaseio.com/registered.json";
 
+        String finalNameOfAdvisor = nameOfAdvisor;
+        HashSet<String> finalHs = hs;
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
             @Override
             public void onResponse(String s) {
                 System.out.println("request succesful: "+ s);
-                doOnSuccess(s);
+                doOnSuccess(s, finalHs);
             }
         },new Response.ErrorListener(){
             @Override
@@ -73,10 +108,14 @@ public class Users extends AppCompatActivity {
         });
     }
 
-    public void doOnSuccess(String s){
+    public void doOnSuccess(String s, HashSet<String> hs){
         try {
             JSONObject obj = new JSONObject(s);
 
+            Iterator<String> it = hs.iterator();
+            while(it.hasNext()){
+                System.out.println("Hashset data: " + it.next());
+            }
 
             Iterator i = obj.keys();
             String key = "";
@@ -85,7 +124,7 @@ public class Users extends AppCompatActivity {
                 key = i.next().toString();
                 System.out.println(key);
 
-                if(!key.equals(UserDetails.username)) {
+                if(!key.equals(UserDetails.username) && hs.contains(key)) {
                     al.add(key);
                 }
 

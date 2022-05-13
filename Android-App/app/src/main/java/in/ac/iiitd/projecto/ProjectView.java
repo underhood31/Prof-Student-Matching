@@ -105,11 +105,12 @@ public class ProjectView extends Fragment {
         allocationStatusTextView.setText(getArguments().getString("allocationStatus"));
         projectID=getArguments().getString("requiredStudents");
         chatWithProf=view.findViewById(R.id.chatProf);
-
+        String nameOfAdvisor = advisorName.getText().toString();
         chatWithProf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Users.class);
+                intent.putExtra("advisorName", nameOfAdvisor);
                 startActivity(intent);
             }
         });

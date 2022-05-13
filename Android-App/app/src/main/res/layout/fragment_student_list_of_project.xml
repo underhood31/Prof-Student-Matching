@@ -16,55 +16,55 @@
         android:textColor="#000000"
         android:textSize="20sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="5dp"-->
+<!--        android:orientation="horizontal">-->
 
-        <TextView
-            android:id="@+id/sortText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_square_block_corner"
-            android:drawableLeft="@drawable/sortby"
-            android:drawablePadding="10dp"
-            android:padding="5dp"
-            android:text="Sort By"
-            android:textAlignment="textStart"
-            android:textColor="#FFFFFF" />
+<!--        <TextView-->
+<!--            android:id="@+id/sortText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/round_square_block_corner"-->
+<!--            android:drawableLeft="@drawable/sortby"-->
+<!--            android:drawablePadding="10dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Sort By"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="#FFFFFF" />-->
 
-        <TextView
-            android:id="@+id/filterText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_square_block_corner"
-            android:drawableLeft="@drawable/filter"
-            android:drawablePadding="10dp"
-            android:padding="5dp"
-            android:text="Filter"
-            android:textAlignment="textStart"
-            android:textColor="#FFFFFF" />
+<!--        <TextView-->
+<!--            android:id="@+id/filterText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/round_square_block_corner"-->
+<!--            android:drawableLeft="@drawable/filter"-->
+<!--            android:drawablePadding="10dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Filter"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="#FFFFFF" />-->
 
-        <TextView
-            android:id="@+id/searchText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_square_block_corner"
-            android:drawableLeft="@drawable/search"
-            android:drawablePadding="10dp"
-            android:padding="5dp"
-            android:text="Search"
-            android:textAlignment="textStart"
-            android:textColor="#FFFFFF" />
+<!--        <TextView-->
+<!--            android:id="@+id/searchText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/round_square_block_corner"-->
+<!--            android:drawableLeft="@drawable/search"-->
+<!--            android:drawablePadding="10dp"-->
+<!--            android:padding="5dp"-->
+<!--            android:text="Search"-->
+<!--            android:textAlignment="textStart"-->
+<!--            android:textColor="#FFFFFF" />-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/availableProjectRecyclerView"

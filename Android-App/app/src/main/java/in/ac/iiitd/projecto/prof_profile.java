@@ -62,7 +62,7 @@ public class prof_profile extends Fragment {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     TextView profName;
-    ImageButton btnProfAddProject;
+    Button btnProfAddProject;
     Button btnChat;
     TextView profContactTextView, profRoomTextView, profDesignationTextView, profLabTextView;
     private String contact, roomNo, lab, designation, res1,res2,res3;
@@ -151,7 +151,7 @@ public class prof_profile extends Fragment {
         Bitmap bitmapImage= BitmapFactory.decodeResource(getResources(),R.drawable.peeyush_image);
         int nh = (int) ( bitmapImage.getHeight() * (512.0 / bitmapImage.getWidth()) );
         Bitmap scaled = Bitmap.createScaledBitmap(bitmapImage, 512, nh, true);
-        profImage=(ImageView) view.findViewById(R.id.profImage);
+//        profImage=(ImageView) view.findViewById(R.id.profImage);
 
         profContactTextView = view.findViewById(R.id.profContactTextView);
         profRoomTextView = view.findViewById(R.id.profRoomTextview);
@@ -184,16 +184,16 @@ public class prof_profile extends Fragment {
         RequestQueue rQueue = Volley.newRequestQueue(getContext());
         rQueue.add(request);
 
-        registerForContextMenu(profImage);
+//        registerForContextMenu(profImage);
 
         String image_path = getDP();
         Toast.makeText(getActivity(), "image_path:"+image_path, Toast.LENGTH_SHORT).show();
-        if (image_path!=null){
-            LinearLayout placeholder= (LinearLayout) view.findViewById(R.id.profImagePlaceHolder);
-            placeholder.setVisibility(View.GONE);
-            profImage.setImageURI(Uri.parse(image_path));
-            profImage.setVisibility(View.VISIBLE);
-        }
+//        if (image_path!=null){
+//            LinearLayout placeholder= (LinearLayout) view.findViewById(R.id.profImagePlaceHolder);
+//            placeholder.setVisibility(View.GONE);
+//            profImage.setImageURI(Uri.parse(image_path));
+//            profImage.setVisibility(View.VISIBLE);
+//        }
 
         btnProfAddProject.setOnClickListener(new View.OnClickListener() {
             @Override

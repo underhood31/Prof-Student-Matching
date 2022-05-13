@@ -43,6 +43,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -84,6 +85,7 @@ public class student_profile_fragment extends Fragment {
     StorageReference storageRef = storage.getReference();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     FirebaseUser currentUser = mAuth.getCurrentUser();
+    HashSet<String> setAdvisor = new HashSet<>();
 
 
     private void saveImage(Bitmap imageBitmap) {
@@ -219,7 +221,7 @@ public class student_profile_fragment extends Fragment {
 
         String rollno=getArguments().getString("rollno");
         System.out.println("The roll number is : "+ rollno);
-//        btnChat = view.findViewById(R.id.studentChat);
+        btnChat = view.findViewById(R.id.studentChat);
         studentApplyProjectBtn = view.findViewById(R.id.studentApplyProjectBtn);
         studentUploadResumeBtn = view.findViewById(R.id.studentUploadResumeBtn);
         studentDownloadResumeBtn = view.findViewById(R.id.studentDownloadResumeBtn);
@@ -311,13 +313,14 @@ public class student_profile_fragment extends Fragment {
             }
         });
 
-//        btnChat.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getActivity(), Users.class);
-//                startActivity(intent);
-//            }
-//        });
+        btnChat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), Users.class);
+                intent.putExtra("advisorSet", setAdvisor);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -404,6 +407,10 @@ public class student_profile_fragment extends Fragment {
         String advisors = jsonObject1.getString("advisor_id");
         advisors = removeExtra(advisors);
         projectItem.setProjectAdvisorName(advisors);
+        System.out.println("The name of the advisor is: "+advisors);
+        setAdvisor.add(advisors);
+
+
 
         String tech_stack = jsonObject1.getString("tech_stack");
         tech_stack = removeExtra(tech_stack);
@@ -449,7 +456,7 @@ public class student_profile_fragment extends Fragment {
         StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                System.out.println("this is the response : " + response);
+                System.out.println("this is the response : " + response);
                 JSONObject jsonObject = null;
                 try {
                     jsonObject = new JSONObject(response);
