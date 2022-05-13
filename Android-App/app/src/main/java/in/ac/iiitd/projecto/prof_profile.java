@@ -65,8 +65,7 @@ public class prof_profile extends Fragment {
     Button btnProfAddProject;
     Button btnChat;
     TextView profContactTextView, profRoomTextView, profDesignationTextView, profLabTextView;
-    private String contact, roomNo, lab, designation, res1,res2,res3;
-    private int profId;
+    private String contact, roomNo, lab, designation, res1,res2,res3, profEmail;
     private void saveImage(Bitmap imageBitmap) {
         StorageReference imagesRef = storageRef.child(currentUser.getEmail());
 
@@ -201,7 +200,7 @@ public class prof_profile extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 StudentSelectedProjectFragment studentListOfProject = new StudentSelectedProjectFragment();
-                AddProject addProject = new AddProject(profId,res1,res2,res3);
+                AddProject addProject = new AddProject(profEmail,res1,res2,res3);
                 fragmentTransaction.replace(R.id.layoutFragmentProfessor,addProject)
                         .addToBackStack(addProject.getClass().getName())
                         .commit();
@@ -257,8 +256,8 @@ public class prof_profile extends Fragment {
                 else if (key.equals("res_interest3")) {
                     res3=obj.get(key).toString();
                 }
-                else if (key.equals("id")) {
-                    profId= (int) obj.get(key);
+                else if (key.equals("email")) {
+                    profEmail= obj.get(key).toString();
                 }
 
             }
