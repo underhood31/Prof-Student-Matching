@@ -115,21 +115,19 @@ class StudentViewSet(viewsets.ModelViewSet):
         return Response("Update Accepted", status=status.HTTP_200_OK)
 
     @action(methods=['get'], detail=True)
-    def sel_proj(self,request,pk):
-        if(pk == None):
-            raise Exception()
-        stud_id = pk
-        stud_instance = Student.objects.get(email=stud_id)
-        print(getattr(stud_instance,"proj_selected"))
-        # lis = ast.literal_eval(getattr(stud_instance,"proj_selected"))
-        # for i in lis:
-        #     # ProjectSerializer()
-        #     # data=ProjectSerializer(self.get_queryset(id= i), many=True).data
-        #     print(Project.objects.filter(id = i).values())
-        #     # print(ProjectSerializer.serialize("json", Project.objects.get(id = 25))
-        #     # data = (Project.objects.get(id=i))
-        #     # print(data)
-        # # except:
-        # #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+    def get_selected_proj(self,request,pk):
+        try:
+            stud_instance = Student.objects.get(email=pk)
+            lis_proj = ast.literal_eval(getattr(stud_instance,"proj_selected"))
+            print(lis_proj)
+            lis = [] 
+            for i in lis_proj:
+                for obj in Project.objects.filter(id=i).values():
+                    lis.append(obj)
+                    # print(obj.asdict())
+                # print(Project.objects.filter(id=i).values())
+            return Response( lis,status=status.HTTP_200_OK)
+        except:
+            return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
         return Response("Update Accepted", status=status.HTTP_200_OK)
