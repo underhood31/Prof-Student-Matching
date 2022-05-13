@@ -38,11 +38,12 @@ public class StudentSelectedProjectFragment extends Fragment {
     private ProjectAdapter projectAdapter;
     private RequestQueue requestQueue;
     private static final String TAG = "VolleyProjectActivity";
+    private String studEmail;
 
 
-
-    public StudentSelectedProjectFragment() {
+    public StudentSelectedProjectFragment(String studEmail) {
         // Required empty public constructor
+        this.studEmail=studEmail;
     }
 
     @Override
@@ -66,7 +67,7 @@ public class StudentSelectedProjectFragment extends Fragment {
         recyclerView.addItemDecoration(dividerItemDecoration);
 
         requestQueue = Volley.newRequestQueue(getContext());
-        String url = "https://prof-student-matching.herokuapp.com/project/";
+        String url = "https://prof-student-matching.herokuapp.com/students/"+studEmail+"/get_selected_proj/";
         fetchData(url);
 
         return view;
@@ -85,8 +86,8 @@ public class StudentSelectedProjectFragment extends Fragment {
         projectItem.setProjectTitle(jsonObject1.getString("title"));
 
         String advisors = jsonObject1.getString("advisor_id");
-        advisors = removeExtra(advisors);
-        projectItem.setProjectAdvisorName(advisors);
+//        advisors = removeExtra(advisors);
+        projectItem.setProjectAdvisorName(advisors.substring(1,advisors.length()-1));
 
         String tech_stack = jsonObject1.getString("tech_stack");
 //        tech_stack = removeExtra(tech_stack);

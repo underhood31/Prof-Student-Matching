@@ -55,6 +55,15 @@ public class Users extends AppCompatActivity {
         if(getIntent().getSerializableExtra("advisorSet")!=null){
             hs = (HashSet<String>) getIntent().getSerializableExtra("advisorSet");
         }
+        if(getIntent().getStringExtra("HashSet_data").equals("all")){
+            hs.add("swastikjain101");
+            hs.add("manavjeetsingh31");
+            hs.add("swastik18269");
+            hs.add("manavjeet18295");
+            hs.add("aanya18208");
+//            String url = "https://projecto-7c78f-default-rtdb.firebaseio.com/registered.json";
+
+        }
 
         if(hs.contains("Sambuddho Chakravarty")){
             hs.add("swastikjain101");

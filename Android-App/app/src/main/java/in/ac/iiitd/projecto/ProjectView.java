@@ -106,11 +106,14 @@ public class ProjectView extends Fragment {
         projectID=getArguments().getString("requiredStudents");
         chatWithProf=view.findViewById(R.id.chatProf);
         String nameOfAdvisor = advisorName.getText().toString();
+        nameOfAdvisor=nameOfAdvisor.substring(1,nameOfAdvisor.length()-1);
+        nameOfAdvisor = nameOfAdvisor.split(",")[0];
+        String finalNameOfAdvisor = nameOfAdvisor;
         chatWithProf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Users.class);
-                intent.putExtra("advisorName", nameOfAdvisor);
+                intent.putExtra("advisorName", finalNameOfAdvisor);
                 startActivity(intent);
             }
         });

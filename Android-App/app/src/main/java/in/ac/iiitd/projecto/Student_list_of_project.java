@@ -90,8 +90,9 @@ public class Student_list_of_project extends Fragment {
         projectItem.setProjectTitle(jsonObject1.getString("title"));
 
         String advisors = jsonObject1.getString("advisor_id");
-        advisors = removeExtra(advisors);
-        projectItem.setProjectAdvisorName(advisors);
+//        advisors = removeExtra(advisors);
+//        projectItem.setProjectAdvisorName(advisors);
+        projectItem.setProjectAdvisorName(advisors.substring(1,advisors.length()-1));
 
         String tech_stack = jsonObject1.getString("tech_stack");
 //        tech_stack = removeExtra(tech_stack);

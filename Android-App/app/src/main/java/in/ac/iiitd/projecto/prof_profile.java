@@ -314,7 +314,6 @@ public class prof_profile extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                StudentSelectedProjectFragment studentListOfProject = new StudentSelectedProjectFragment();
                 AddProject addProject = new AddProject(profEmail,res1,res2,res3);
                 fragmentTransaction.replace(R.id.layoutFragmentProfessor,addProject)
                         .addToBackStack(addProject.getClass().getName())
@@ -325,6 +324,7 @@ public class prof_profile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Users.class);
+                intent.putExtra("HashSet_data", "all");
                 startActivity(intent);
             }
         });
@@ -403,7 +403,7 @@ public class prof_profile extends Fragment {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
-                Toast.makeText(getActivity(), "Unable to download", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Unable to download", Toast.LENGTH_SHORT).show();
             }
         });
         try{

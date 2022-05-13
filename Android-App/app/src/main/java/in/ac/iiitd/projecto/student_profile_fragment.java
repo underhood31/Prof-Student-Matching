@@ -405,7 +405,7 @@ public class student_profile_fragment extends Fragment {
         projectItem.setProjectTitle(jsonObject1.getString("title"));
 
         String advisors = jsonObject1.getString("advisor_id");
-        advisors = removeExtra(advisors);
+//        advisors = removeExtra(advisors);
         projectItem.setProjectAdvisorName(advisors);
         System.out.println("The name of the advisor is: "+advisors);
         setAdvisor.add(advisors);

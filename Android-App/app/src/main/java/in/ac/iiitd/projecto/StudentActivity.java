@@ -18,9 +18,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class StudentActivity extends AppCompatActivity {
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -47,7 +49,7 @@ public class StudentActivity extends AppCompatActivity {
             case R.id.projSelected:
                 FragmentManager fragmentManager = this.getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                StudentSelectedProjectFragment studentListOfProject = new StudentSelectedProjectFragment();
+                StudentSelectedProjectFragment studentListOfProject = new StudentSelectedProjectFragment(currentUser.getEmail().split("@")[0]);
                 fragmentTransaction.replace(R.id.layoutFragment,studentListOfProject)
                         .addToBackStack(studentListOfProject.getClass().getName())
                         .commit();
