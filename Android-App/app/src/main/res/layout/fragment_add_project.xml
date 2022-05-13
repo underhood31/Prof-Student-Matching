@@ -44,8 +44,6 @@
                 android:layout_marginRight="5dp"
                 android:fontFamily="serif"
                 android:hint="Enter Title of Project"
-                android:textColorHint="@color/black"
-                android:textColor="#FFFFFF"
                 android:textSize="20sp" />
 
             <View
@@ -63,9 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/roboto_condensed_regular"
-                android:hint="Enter Name of Professor"
-                android:textColorHint="@color/black"
-                android:textColor="#EFEFEF"
+                android:hint="Other Advisors"
                 android:textSize="16sp" />
         </LinearLayout>
 
