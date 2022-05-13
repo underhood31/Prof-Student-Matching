@@ -3,6 +3,7 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from .serializers import ProfSerializer,ProjectSerializer,ResearchFieldSerializer
 from .models import Prof,Project, ResearchField
+from student.models import Student
 import ast
 # Create your views here.
 class ProfViewSet(viewsets.ModelViewSet):
@@ -61,6 +62,28 @@ class ProfViewSet(viewsets.ModelViewSet):
             prof_instance.save()
         except:
             return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+        return Response("Update Accepted", status=status.HTTP_200_OK)
+
+    @action(methods=['post'], detail=True)
+    def select_stud(self,request,pk):
+        # try:
+        if(pk == None):
+            raise Exception()
+        prof_id = pk
+        prof_instance = Prof.objects.get(email=prof_id)
+        stud_lis = set(ast.literal_eval(getattr(prof_instance,"stud_list")))
+        stud_lis.add(request.data["stud"])
+        setattr(prof_instance,"stud_list",str(list(stud_lis)))
+
+        stud_instance = Student.objects.get(email=request.data["stud"])
+        selected_proj = set(ast.literal_eval(getattr(stud_instance,"proj_selected")))
+        selected_proj.add(int(request.data["proj_id"]))
+        setattr(stud_instance,"proj_selected",str(list(selected_proj)))
+        prof_instance.save()
+        stud_instance.save()
+        # except:
+        #     return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
 
         return Response("Update Accepted", status=status.HTTP_200_OK)
     
