@@ -226,11 +226,21 @@
             android:textColor="#000000"
             android:textSize="25sp"
             android:textStyle="bold" />
-
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProfProject"
             android:layout_width="match_parent"
-            android:layout_height="330dp"
-            android:background="@drawable/rounded_corner_no_stroke" />
+            android:layout_height="250dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
+            android:scrollbars="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/listofProjects">
+
+
+        </androidx.recyclerview.widget.RecyclerView>
+<!--        <ListView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="330dp"-->
+<!--            android:background="@drawable/rounded_corner_no_stroke" />-->
 
     </LinearLayout>
 

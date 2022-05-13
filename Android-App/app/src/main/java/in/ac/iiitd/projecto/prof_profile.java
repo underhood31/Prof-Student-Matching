@@ -11,6 +11,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -47,8 +50,13 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
+import in.ac.iiitd.projecto.Adapter.ProjectAdapter;
+import in.ac.iiitd.projecto.Model.ProjectItem;
 import in.ac.iiitd.projecto.Model.UserDetails;
 
 public class prof_profile extends Fragment {
@@ -58,13 +66,20 @@ public class prof_profile extends Fragment {
     private final int CAMERA_REQUEST=1;
     private final int PICK_IMAGE_REQUEST=2;
     private final int PICK_PDF_REQUEST=3;
+    private static final String TAG = "ProfessorActivity";
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private RecyclerView recyclerView;
+    private ArrayList<ProjectItem> profProjectArrayList;
+    private ProjectAdapter projectAdapter;
     FirebaseUser currentUser = mAuth.getCurrentUser();
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef = storage.getReference();
     TextView profName;
+    private RequestQueue profRequestQueue;
     Button btnProfAddProject;
     Button btnChat;
+    String profProjects = "";
+    ArrayList<String> projectListArr = new ArrayList<>();
     TextView profContactTextView, profRoomTextView, profDesignationTextView, profLabTextView;
     private String contact, roomNo, lab, designation, res1,res2,res3, profEmail;
     private void saveImage(Bitmap imageBitmap) {
@@ -138,6 +153,77 @@ public class prof_profile extends Fragment {
         }
         return super.onContextItemSelected(item);
     }
+
+    public ArrayList<String> changeProjectList(String str){
+        System.out.println("BRUHHHHHH");
+        System.out.println(str);
+        str = str.replace("[","");
+        str = str.replace("]","");
+        String[] elements = str.split(",");
+        List<String> list = Arrays.asList(elements);
+
+        ArrayList<String> listOfString = new ArrayList<String>(list);
+
+        return listOfString;
+    }
+    public String removeExtra(String str){
+        str = str.replace("[","");
+        str = str.replace("]","");
+        str = str.split(",")[0];
+        return str;
+    }
+    public void fillData(ProjectItem projectItem, JSONObject jsonObject1) throws JSONException {
+        projectItem.setProjectTitle(jsonObject1.getString("title"));
+
+        String advisors = jsonObject1.getString("advisor_id");
+        advisors = removeExtra(advisors);
+        projectItem.setProjectAdvisorName(advisors);
+        System.out.println("The name of the advisor is: "+advisors);
+//        setAdvisor.add(advisors);
+
+
+
+        String tech_stack = jsonObject1.getString("tech_stack");
+        tech_stack = removeExtra(tech_stack);
+        projectItem.setProjectTechStack(tech_stack);
+
+        projectItem.setProjectStatus(jsonObject1.getBoolean("alloc_stat"));
+        projectItem.setProjectDescription(jsonObject1.getString("descr"));
+        projectItem.setProjectTimeRequired(jsonObject1.getInt("time_req"));
+        projectItem.setProjectRequiredStudents(jsonObject1.getInt("req_stu_no"));
+        projectItem.setProjectId(jsonObject1.getInt("id"));
+
+        profProjectArrayList.add(projectItem);
+    }
+    private void fetchData(String url){
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("The new response is : " + response);
+                JSONObject jsonObject2 = null;
+                try {
+                    jsonObject2 = new JSONObject(response);
+                    ProjectItem projectItem;
+                    projectItem = new ProjectItem();
+                    fillData(projectItem, jsonObject2);
+                    projectAdapter.notifyDataSetChanged();
+
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                Log.i(TAG, "volley error: " + error.getMessage());
+            }
+        });
+
+        profRequestQueue.add(request); //Execution
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -175,6 +261,15 @@ public class prof_profile extends Fragment {
             public void onResponse(String s) {
                 System.out.println("request successful: "+ s);
                 doOnSuccess(s);
+                projectListArr = changeProjectList(profProjects);
+                for(int i=0;i<projectListArr.size();i++){
+                    StringBuilder projectURL = new StringBuilder("https://prof-student-matching.herokuapp.com/project/");
+                    projectURL.append(projectListArr.get(i));
+                    System.out.println(projectListArr.get(i)+" is the project id.");
+                    String projURL = projectURL.toString();
+                    System.out.println("The project url is: "+projURL);
+                    fetchData(projURL);
+                }
             }
         },new Response.ErrorListener(){
             @Override
@@ -186,8 +281,25 @@ public class prof_profile extends Fragment {
         RequestQueue rQueue = Volley.newRequestQueue(getContext());
         rQueue.add(request);
 
-//        registerForContextMenu(profImage);
 
+
+//        registerForContextMenu(profImage);
+        /*********************RecyclerView*********************************************/
+        /******************************************************************************/
+        this.recyclerView = view.findViewById(R.id.recyclerViewProfProject);
+        profProjectArrayList = new ArrayList<>();
+        projectAdapter =  new ProjectAdapter(profProjectArrayList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(projectAdapter);
+        recyclerView.addItemDecoration(dividerItemDecoration);
+        profRequestQueue = Volley.newRequestQueue(getContext());
+
+
+
+
+        /******************************************************************************/
         String image_path = getDP();
         Toast.makeText(getActivity(), "image_path:"+image_path, Toast.LENGTH_SHORT).show();
 //        if (image_path!=null){
@@ -262,9 +374,11 @@ public class prof_profile extends Fragment {
                 else if (key.equals("email")) {
                     profEmail= obj.get(key).toString();
                 }
-
+                else if(key.equals("proj_list")){
+                    profProjects = obj.get(key).toString();
+                }
             }
-
+            System.out.println("The project list is as follows: "+ profProjects);
         } catch (JSONException e) {
             e.printStackTrace();
         }
