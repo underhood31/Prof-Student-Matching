@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -34,6 +35,7 @@ public class AddProject extends Fragment {
     Button addProject;
     private String advisorID;
     private String res1,res2,res3;
+    String advisors;
 
     AddProject(String advisorID, String res1,String res2,String res3) {
         this.advisorID=advisorID;
@@ -56,6 +58,7 @@ public class AddProject extends Fragment {
         projectTitle = view.findViewById(R.id.projectTitle);
 //        ProjectItem projectItem = new ProjectItem()
         addProject=view.findViewById(R.id.addProject);
+        advisors=advisorID;
 
 
 
@@ -67,6 +70,7 @@ public class AddProject extends Fragment {
                 }
                 catch (Exception e) {
                     Toast.makeText(getContext(), "Unable to add project", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
                 }
             }
         });
@@ -78,8 +82,9 @@ public class AddProject extends Fragment {
     void createNewProject() {
         Boolean status = false ? allocationStatusTextView.getText().toString().toLowerCase().equals("no") : true;
         ProjectItem projectItem = new ProjectItem(projectTitle.getText().toString(), projectDescription.getText().toString(),techStackTextView.getText().toString(),Integer.valueOf(timeRequiredTextView.getText().toString()), Integer.valueOf(requiredStudentsTextView.getText().toString()), status);
-
-        String URL="https://prof-student-matching.herokuapp.com/project/";
+        String otherAdvisors=((EditText)getView().findViewById(R.id.advisorName)).getText().toString();
+        advisors="["+advisors+","+otherAdvisors+"]";
+        String URL="https://prof-student-matching.herokuapp.com/prof/"+advisorID+"/create_proj/";
         JSONObject jsonObject = new JSONObject();
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(getContext());
@@ -87,10 +92,9 @@ public class AddProject extends Fragment {
             jsonObject.put("descr",projectItem.getProjectDescription());
             jsonObject.put("time_req",projectItem.getProjectTimeRequired());
             jsonObject.put("tech_stack",projectItem.getProjectTechStack());
-            jsonObject.put("sel_stud",null);
-            jsonObject.put("alloc_stat",projectItem.getProjectStatus());
+            jsonObject.put("alloc_stat",false);
             jsonObject.put("req_stu_no",projectItem.getProjectRequiredStudents());
-            jsonObject.put("advisor_id",advisorID);
+            jsonObject.put("advisor_id",advisors);
             jsonObject.put("res_interest1",Integer.parseInt(res1));
             jsonObject.put("res_interest2",Integer.parseInt(res2));
             jsonObject.put("res_interest3",Integer.parseInt(res3));

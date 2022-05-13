@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -162,8 +163,10 @@ public class prof_profile extends Fragment {
 
         urlsb.append("https://prof-student-matching.herokuapp.com/prof/");
 //        urlsb.append(currentUser.getDisplayName());
-        urlsb.append("mukulika");
+        urlsb.append(currentUser.getEmail().split("@")[0]);
+
         urlsb.append("/");
+        Log.d("TAG", "onCreateView: Link:"+urlsb.toString());
         String url = urlsb.toString();
         System.out.println("printing URL: " + url);
 
