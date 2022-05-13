@@ -107,6 +107,22 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         return Response("Update Accepted", status=status.HTTP_200_OK)
 
+    @action(methods=['get'], detail=False)
+    def get_proj(self,request):
+        try:
+            lis_proj = ast.literal_eval(request.data["proj_list"])
+            print(lis_proj)
+            lis = [] 
+            for i in lis_proj:
+                for obj in Project.objects.filter(id=i).values():
+                    lis.append(obj)
+                    # print(obj.asdict())
+                # print(Project.objects.filter(id=i).values())
+            return Response( lis,status=status.HTTP_200_OK)
+        except:
+            return Response("Invalid Request", status=status.HTTP_400_BAD_REQUEST)
+
+        return Response("Update Accepted", status=status.HTTP_200_OK)
 
 
 class ResearchFieldViewSet(viewsets.ModelViewSet):
