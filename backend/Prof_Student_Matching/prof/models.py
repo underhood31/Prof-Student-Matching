@@ -19,8 +19,8 @@ class Prof(models.Model):
     res_interest1 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="prof_res_interest1",null=True)
     res_interest2 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="prof_res_interest2",null=True)
     res_interest3 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="prof_res_interest3",null=True)
-    stud_list = models.JSONField(null= True, help_text="This includes the list of students roll no which have worked under a particular prof")
-
+    stud_list = models.CharField(max_length=400,default="[]", help_text="This includes the list of students roll no which have worked under a particular prof")
+    proj_list = models.CharField(null=True,max_length=400,default="[]", help_text="This includes the list of projects that the prof has listed")
 
 class Project(models.Model):
     id = models.AutoField(primary_key=True)
@@ -31,10 +31,10 @@ class Project(models.Model):
     res_interest1 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="project_res_interest1",null=True)
     res_interest2 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="project_res_interest2",null=True)
     res_interest3 = models.ForeignKey(ResearchField, on_delete=models.CASCADE,related_name="project_res_interest3",null=True)
-    sel_stud = models.JSONField(null=True,help_text="Roll number of the students selected for this project")
+    sel_stud = models.CharField(max_length=400,default="[]",help_text="Roll number of the students selected for this project")
     alloc_stat = models.BooleanField(default=False,help_text="This helps to determine if the project has been allocated to students")
-    req_stu_no = models.IntegerField(null=False,help_text="This helps in determining the number of students required for a project")
-    advisor_id = models.JSONField(null=True,help_text="This stores the advisor's name for this project")
+    req_stu_no = models.IntegerField(help_text="This helps in determining the number of students required for a project")
+    advisor_id = models.CharField(max_length=400,help_text="This stores the advisor's name for this project",default="[]")
     apl_stud = models.CharField(max_length=400,help_text="Roll number of the students who applied this project",default="[]")
 
 
